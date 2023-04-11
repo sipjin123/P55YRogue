@@ -44,14 +44,6 @@ void AASpawnableObj::OnComponentOverlapBegin(UPrimitiveComponent* OverlappedComp
 	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Cyan, "Enter Me");
 }
 
-/*
-void AASpawnableObj::OnOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
-{
-	UE_LOG(LogTemp, Warning, TEXT("OVERLAP END C:, %f"), 12.f);
-	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Cyan, "Exit Me");
-}
-*/
-
 void AASpawnableObj::OnComponentEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
 	UE_LOG(LogTemp, Warning, TEXT("OVERLAP ENDDDDDD C:, %f"), 12.f);
@@ -62,6 +54,5 @@ void AASpawnableObj::OnComponentEndOverlap(UPrimitiveComponent* OverlappedComp, 
 void AASpawnableObj::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
