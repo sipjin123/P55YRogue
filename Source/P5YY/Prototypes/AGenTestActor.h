@@ -27,8 +27,25 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Group1")
 		void GetOverlapActorRadiusFunc();
 
+	UFUNCTION(BlueprintCallable, Category = "Group1")
+		void TriggerTimerDelayTest();
+
+	UFUNCTION(BlueprintCallable, Category = "Group1")
+		void MethodWithDelay(int32 TestInt);
+
+	UFUNCTION(BlueprintCallable, Category = "Group1")
+		void TickDamageFunc(float DamagePerTick);
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float TestQuantity;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float DamageTickToTake;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float PreviousDamageTick;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		bool DebugObj;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		class UBoxComponent* BoxCompRoot;

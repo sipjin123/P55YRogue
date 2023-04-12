@@ -7,6 +7,7 @@
 #include "UObject/Object.h"
 #include "DrawDebugHelpers.h"
 #include "Kismet/KismetSystemLibrary.h"
+#include "TimerManager.h"
 
 // Sets default values
 AAGenTestActor::AAGenTestActor()
@@ -167,10 +168,36 @@ void AAGenTestActor::GetOverlapActorRadiusFunc() {
 	UE_LOG(LogTemp, Warning, TEXT("The nearest distance is: %f"), NearestDistance);
 }
 
+void AAGenTestActor::TriggerTimerDelayTest() {
+	int32 ParameterToPass = 100; // You can use any supported variable type
+
+	FTimerHandle TimerHandle;
+	UE_LOG(LogTemp, Warning, TEXT("Method timer has Started"));
+	FTimerDelegate TimerDelegate = FTimerDelegate::CreateUObject(this, &AAGenTestActor::MethodWithDelay, ParameterToPass);
+	GetWorld()->GetTimerManager().SetTimer(TimerHandle, TimerDelegate, 3, false);
+}
+
+void AAGenTestActor::MethodWithDelay(int32 TestInt) {
+	DamageTickToTake = 100;
+	UE_LOG(LogTemp, Warning, TEXT("Method timer is finished: %d"), TestInt);
+}
+
+void AAGenTestActor::TickDamageFunc (float DamagePerTick)
+{
+	float DamagePerSec = 1;
+	DamageTickToTake -= DamagePerSec * DamagePerTick;
+	if (int32(PreviousDamageTick) != int32(DamageTickToTake)) {
+		//UE_LOG(LogTemp, Warning, TEXT("Tick: %d"), int32(DamageTickToTake));
+		PreviousDamageTick = DamageTickToTake;
+	}
+}
+
 // Called every frame
 void AAGenTestActor::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	if (DebugObj && DamageTickToTake > 0) {
+		TickDamageFunc(DeltaTime);
+	}
 }
 

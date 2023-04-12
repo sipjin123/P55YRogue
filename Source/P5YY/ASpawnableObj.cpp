@@ -6,7 +6,7 @@
 #include "Components/BoxComponent.h"
 #include "Engine/StaticMesh.h"
 #include "UObject/Object.h"
-
+#include "Kismet/KismetMathLibrary.h"
 
 // Sets default values
 AASpawnableObj::AASpawnableObj()
@@ -37,17 +37,23 @@ void AASpawnableObj::BeginPlay()
 	NewCollisionBox->OnComponentEndOverlap.AddDynamic(this, &AASpawnableObj::OnComponentEndOverlap);
 }
 
+void AASpawnableObj::GetRandomSpawnPoint() {
+	const FVector SpawnOrigin = NewCollisionBox->Bounds.Origin;
+	const FVector SpawnLimit = NewCollisionBox->Bounds.BoxExtent;
+
+	FVector NewSpawnPoint = UKismetMathLibrary::RandomPointInBoundingBox(SpawnOrigin, SpawnLimit);
+}
 
 void AASpawnableObj::OnComponentOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
 {
-	UE_LOG(LogTemp, Warning, TEXT("OVERLAP BEGIN C:, %f"), 22.f);
-	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Cyan, "Enter Me");
+	float Distance = FVector::Dist(GetActorLocation(), OtherActor->GetActorLocation());
+	UE_LOG(LogTemp, Warning, TEXT("Overlap Begin with Component: "), Distance);
 }
 
 void AASpawnableObj::OnComponentEndOverlap(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
-	UE_LOG(LogTemp, Warning, TEXT("OVERLAP ENDDDDDD C:, %f"), 12.f);
-	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Cyan, "Exit Me");
+	float Distance = FVector::Dist(GetActorLocation(), OtherActor->GetActorLocation());
+	UE_LOG(LogTemp, Warning, TEXT("Overlap END with Component: %f"), Distance);
 }
 
 // Called every frame
