@@ -34,7 +34,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		class UStaticMeshComponent* MeshSource;
 
-	UFUNCTION()
+	UFUNCTION(BlueprintCallable, Category = "Ability")
 		void GetRandomSpawnPoint();
 
 	UFUNCTION()

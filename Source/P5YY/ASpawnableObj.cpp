@@ -42,6 +42,18 @@ void AASpawnableObj::GetRandomSpawnPoint() {
 	const FVector SpawnLimit = NewCollisionBox->Bounds.BoxExtent;
 
 	FVector NewSpawnPoint = UKismetMathLibrary::RandomPointInBoundingBox(SpawnOrigin, SpawnLimit);
+	auto result = FMath::VRand();
+	DrawDebugSphere(GetWorld(), SpawnOrigin, 50, 16, FColor::Red, false, 5);
+	DrawDebugSphere(GetWorld(), SpawnOrigin, 100, 16, FColor::Blue, false, 5);
+	result *= UKismetMathLibrary::RandomFloatInRange(50.0f, 100.0f);
+
+	float xVal = SpawnOrigin.X + result.X;
+	float yVal = SpawnOrigin.Y + result.Y;
+	float zVal = SpawnOrigin.Z + result.Z;
+
+	float DrawRadius = 12.0f;
+	float LineDuration = 5.0f;
+	DrawDebugSphere(GetWorld(), FVector(xVal, yVal, zVal), DrawRadius, 16, FColor::Orange, false, LineDuration);
 }
 
 void AASpawnableObj::OnComponentOverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
