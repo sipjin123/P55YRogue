@@ -8,6 +8,7 @@
 #include "DrawDebugHelpers.h"
 #include "Kismet/KismetSystemLibrary.h"
 #include "TimerManager.h"
+#include "Kismet/GameplayStatics.h"
 
 // Sets default values
 AAGenTestActor::AAGenTestActor()
@@ -180,6 +181,14 @@ void AAGenTestActor::TriggerTimerDelayTest() {
 void AAGenTestActor::MethodWithDelay(int32 TestInt) {
 	DamageTickToTake = 100;
 	UE_LOG(LogTemp, Warning, TEXT("Method timer is finished: %d"), TestInt);
+}
+
+void AAGenTestActor::UpdateGameMode() {
+	AGameModeBase* GM = UGameplayStatics::GetGameMode(GetWorld());
+
+	AP5YYGameMode* NewGM = Cast<AP5YYGameMode>(GM);
+	UE_LOG(LogTemp, Warning, TEXT("GM is now called"));
+	NewGM->UpdateGameModeNewX();
 }
 
 void AAGenTestActor::TickDamageFunc (float DamagePerTick)

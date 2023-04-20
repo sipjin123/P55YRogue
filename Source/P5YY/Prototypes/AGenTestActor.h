@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "P5YY/ASpawnableObj.h"
+#include "P5YY/P5YYGameMode.h"
 #include "AGenTestActor.generated.h"
 
 UCLASS()
@@ -31,6 +33,9 @@ public:
 		void TriggerTimerDelayTest();
 
 	UFUNCTION(BlueprintCallable, Category = "Group1")
+		void UpdateGameMode();
+	
+	UFUNCTION(BlueprintCallable, Category = "Group1")
 		void MethodWithDelay(int32 TestInt);
 
 	UFUNCTION(BlueprintCallable, Category = "Group1")
@@ -49,6 +54,12 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		class UBoxComponent* BoxCompRoot;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		TSubclassOf<AASpawnableObj> CustomSpawnableActor;
+
+	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		//TSubclassOf<P5YYGameMode> CustomGmode;
 
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	//	class UBoxComponent* RaycastSourceBackup;

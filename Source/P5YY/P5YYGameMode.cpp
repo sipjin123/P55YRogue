@@ -3,6 +3,7 @@
 #include "P5YYGameMode.h"
 #include "P5YYCharacter.h"
 #include "UObject/ConstructorHelpers.h"
+#include "DrawDebugHelpers.h"
 
 AP5YYGameMode::AP5YYGameMode()
 {
@@ -10,6 +11,13 @@ AP5YYGameMode::AP5YYGameMode()
 	static ConstructorHelpers::FClassFinder<APawn> PlayerPawnBPClass(TEXT("/Game/ThirdPerson/Blueprints/BP_ThirdPersonCharacter"));
 	if (PlayerPawnBPClass.Class != NULL)
 	{
-		DefaultPawnClass = PlayerPawnBPClass.Class;
+		//DefaultPawnClass = PlayerPawnBPClass.Class;
+		//AAGenTestActor* genTest = NULL;
+		//AASpawnableObj* genTest2 = NULL;
 	}
+}
+
+void AP5YYGameMode::UpdateGameModeNewX()
+{
+	UE_LOG(LogTemp, Warning, TEXT("Game mode is now called"));
 }
