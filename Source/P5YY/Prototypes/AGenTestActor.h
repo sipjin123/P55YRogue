@@ -20,6 +20,10 @@ public:
 	UFUNCTION(BlueprintCallable, Category="Group1")
 		void TestCall1();
 
+	
+	UFUNCTION(BlueprintCallable, Category = "Group1")
+		void LoadLevel();
+
 	UFUNCTION(BlueprintCallable, Category = "Group1")
 		void RaycastTarget();
 
@@ -72,6 +76,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		class USceneComponent* SceneComponent;
+
+	UPROPERTY(EditAnywhere)
+		FName LevelToLoad;
 
 protected:
 	// Called when the game starts or when spawned

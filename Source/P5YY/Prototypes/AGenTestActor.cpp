@@ -6,6 +6,7 @@
 #include "Engine/StaticMesh.h"
 #include "UObject/Object.h"
 #include "DrawDebugHelpers.h"
+
 #include "Kismet/KismetSystemLibrary.h"
 #include "TimerManager.h"
 #include "Kismet/GameplayStatics.h"
@@ -170,8 +171,7 @@ void AAGenTestActor::GetOverlapActorRadiusFunc() {
 }
 
 void AAGenTestActor::TriggerTimerDelayTest() {
-	int32 ParameterToPass = 100; // You can use any supported variable type
-
+	int32 ParameterToPass = 100;
 	FTimerHandle TimerHandle;
 	UE_LOG(LogTemp, Warning, TEXT("Method timer has Started"));
 	FTimerDelegate TimerDelegate = FTimerDelegate::CreateUObject(this, &AAGenTestActor::MethodWithDelay, ParameterToPass);
@@ -210,3 +210,8 @@ void AAGenTestActor::Tick(float DeltaTime)
 	}
 }
 
+void AAGenTestActor::LoadLevel() {
+	LevelToLoad = TEXT("Town");
+	FLatentActionInfo LatentInfo;
+	UGameplayStatics::OpenLevel(this, LevelToLoad, true);
+}
