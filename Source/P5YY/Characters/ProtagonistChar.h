@@ -8,6 +8,7 @@
 #include "InputActionValue.h"
 
 #include "P5YY/AProjectile.h"
+#include "P5YY/ACEquipmentHandling.h"
 
 #include "ProtagonistChar.generated.h"
 
@@ -50,9 +51,21 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawnable")
 		TSubclassOf<AAProjectile> CustomProjectile;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Component")
+		class UACEquipmentHandling* EquipmentHandling;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		int32 TestID;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AActor* TargetActor;
+
+	UFUNCTION(BlueprintCallable, Category = "Group1")
+		void LockTarget();
+
+	UFUNCTION(BlueprintCallable, Category = "Group1")
+		void UpdateEquipmentHandling();
+	
 protected:
 	/** Called for movement input */
 	void Move(const FInputActionValue& Value);

@@ -14,6 +14,10 @@
 
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "Kismet/GameplayStatics.h"
+#include "Kismet/KismetMathLibrary.h"
+
+#include "P5YY/ACEquipmentHandling.h"
 
 // Sets default values
 AProtagonistChar::AProtagonistChar()
@@ -131,5 +135,27 @@ void AProtagonistChar::SpawnProjectile() {
 		FRotator newRot = GetActorRotation();
 		FVector newLoc = GetActorLocation();
 		NewProjectile->InitializeProjectile(newDir, newLoc, newRot);
+	}
+}
+
+void AProtagonistChar::UpdateEquipmentHandling() {
+	if (EquipmentHandling == NULL) {
+		UACEquipmentHandling* newHandler = AActor::FindComponentByClass<UACEquipmentHandling>();
+		if (newHandler) {
+			EquipmentHandling = newHandler;
+			EquipmentHandling->InitializeCompponent();
+		}
+	}
+	else {
+		EquipmentHandling->InitializeCompponent();
+	}
+}
+
+void AProtagonistChar::LockTarget() {
+	APlayerController* ControllerRef = UGameplayStatics::GetPlayerController(GetWorld(), 0);
+
+	if (TargetActor != NULL) {
+		FRotator NewRotation = UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), TargetActor->GetActorLocation());
+		ControllerRef->SetControlRotation(NewRotation);
 	}
 }
