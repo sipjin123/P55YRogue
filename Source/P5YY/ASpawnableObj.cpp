@@ -26,7 +26,7 @@ AASpawnableObj::AASpawnableObj()
 // Called when the game starts or when spawned
 void AASpawnableObj::TestSpawn()
 {
-	GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Cyan, "Spawn Test Me");
+	//GEngine->AddOnScreenDebugMessage(-1, 2, FColor::Cyan, "Spawn Test Me");
 }
 
 // Called when the game starts or when spawned
