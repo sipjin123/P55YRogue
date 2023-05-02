@@ -9,6 +9,7 @@
 
 #include "P5YY/AProjectile.h"
 #include "P5YY/ACEquipmentHandling.h"
+#include "P5YY/PlayerStatWidget.h"
 
 #include "ProtagonistChar.generated.h"
 
@@ -51,8 +52,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Spawnable")
 		TSubclassOf<AAProjectile> CustomProjectile;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Component")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 		class UACEquipmentHandling* EquipmentHandling;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
+		TSubclassOf<UPlayerStatWidget> PlayerHUDClass;
+
+	UPROPERTY()
+		UPlayerStatWidget* PlayerHUD;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		int32 TestID;
@@ -79,6 +86,7 @@ protected:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
+	virtual void EndPlay(const EEndPlayReason::Type EndPlayReason) override;
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;

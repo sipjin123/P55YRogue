@@ -18,6 +18,7 @@
 #include "Kismet/KismetMathLibrary.h"
 
 #include "P5YY/ACEquipmentHandling.h"
+#include "P5YY/PlayerStatWidget.h"
 
 // Sets default values
 AProtagonistChar::AProtagonistChar()
@@ -61,11 +62,24 @@ void AProtagonistChar::BeginPlay()
 	//Add Input Mapping Context
 	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
 	{
+		check(PlayerController);
+		PlayerHUD = CreateWidget<UPlayerStatWidget>(PlayerController, PlayerHUDClass);
+		check(PlayerHUD);
+		PlayerHUD->AddToPlayerScreen();
 		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
 		{
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
 	}
+}
+
+void AProtagonistChar::EndPlay(const EEndPlayReason::Type EndPlayReason)
+{
+	if (PlayerHUD) {
+		PlayerHUD->RemoveFromParent();
+		PlayerHUD = nullptr;
+	}
+	Super::EndPlay(EndPlayReason);
 }
 
 // Called every frame
