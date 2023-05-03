@@ -9,7 +9,7 @@
 
 #include "P5YY/AProjectile.h"
 #include "P5YY/ACEquipmentHandling.h"
-#include "P5YY/PlayerStatWidget.h"
+#include "P5YY/UIWidgets/PlayerStatWidget.h"
 
 #include "ProtagonistChar.generated.h"
 

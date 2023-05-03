@@ -18,7 +18,7 @@
 #include "Kismet/KismetMathLibrary.h"
 
 #include "P5YY/ACEquipmentHandling.h"
-#include "P5YY/PlayerStatWidget.h"
+#include "P5YY/UIWidgets/PlayerStatWidget.h"
 
 // Sets default values
 AProtagonistChar::AProtagonistChar()
