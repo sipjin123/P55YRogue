@@ -8,13 +8,21 @@
 
 UAvatarBTTask_FindRandomEnemy::UAvatarBTTask_FindRandomEnemy() {
 	NodeName = TEXT("Find Random Location");
-
-	// accept only vectors
+	//bNotifyTick = true;
+	
+	// Accept only vectors
 	BlackboardKey.AddVectorFilter(this, GET_MEMBER_NAME_CHECKED(UAvatarBTTask_FindRandomEnemy, BlackboardKey));
 }
 
 EBTNodeResult::Type UAvatarBTTask_FindRandomEnemy::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
+	//return EBTNodeResult::InProgress;
+	
+	// Test Events
+	TakeDmg_Implementation(32);
+	TakeDmg_ImplementationVer2(55);
+
+	UE_LOG(LogTemp, Warning, TEXT("Blackboard Execute Task"));
 	FNavLocation Location{};
 
 	// Get AI Pawn
@@ -39,20 +47,32 @@ EBTNodeResult::Type UAvatarBTTask_FindRandomEnemy::ExecuteTask(UBehaviorTreeComp
 	return EBTNodeResult::Succeeded;
 }
 
+void UAvatarBTTask_FindRandomEnemy::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
+{
+	//UE_LOG(LogTemp, Warning, TEXT("Tick Task"));
+}
+
 FString UAvatarBTTask_FindRandomEnemy::GetStaticDescription() const
 {
 	return FString::Printf(TEXT("Vector: %s"), *BlackboardKey.SelectedKeyName.ToString());
-	//return FString::Printf(TEXT("Vector"));
 }
 
-void UAvatarBTTask_FindRandomEnemy::OnGameplayTaskInitialized(UGameplayTask& Task) {
+void UAvatarBTTask_FindRandomEnemy::TriggerTestFunc() {
 
+}
+void UAvatarBTTask_FindRandomEnemy::OnGameplayTaskInitialized(UGameplayTask& Task) {
+	UE_LOG(LogTemp, Warning, TEXT("BB Task Init"));
 }
 
 void UAvatarBTTask_FindRandomEnemy::OnGameplayTaskActivated(UGameplayTask& Task) {
-
+	UE_LOG(LogTemp, Warning, TEXT("BB Task Activated"));
 }
 
 void UAvatarBTTask_FindRandomEnemy::OnGameplayTaskDeactivated(UGameplayTask& Task) {
+	UE_LOG(LogTemp, Warning, TEXT("BB Task Deactivated"));
+}
 
+void UAvatarBTTask_FindRandomEnemy::TakeDmg_ImplementationVer2_Implementation(int32 Damage) {
+	// Needs to add "_Implementation" to differentiate c++ and BP versions
+	UE_LOG(LogTemp, Warning, TEXT("Event Called: Damage is: {%d}"), Damage);
 }
