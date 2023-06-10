@@ -38,6 +38,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
 		float Lifetime;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
+		bool ExplodesOnCollision;
+	
 public:
 	UFUNCTION(BlueprintCallable, Category = "Properties")
 	void InitializeProjectile(FVector& newDirection, FVector& spawnPoint, FRotator& startRotator);
