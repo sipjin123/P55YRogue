@@ -34,6 +34,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
 		float Velocity;
+		
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
+		float Lifetime;
 	
 public:
 	UFUNCTION(BlueprintCallable, Category = "Properties")
