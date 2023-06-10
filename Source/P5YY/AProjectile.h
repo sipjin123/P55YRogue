@@ -29,6 +29,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		class USceneComponent* SceneComponent;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
+		float Damage;
+	
 public:
 	UFUNCTION(BlueprintCallable, Category = "Properties")
 	void InitializeProjectile(FVector& newDirection, FVector& spawnPoint, FRotator& startRotator);
