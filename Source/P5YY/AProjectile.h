@@ -32,6 +32,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
 		float Damage;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
+		float Velocity;
+	
 public:
 	UFUNCTION(BlueprintCallable, Category = "Properties")
 	void InitializeProjectile(FVector& newDirection, FVector& spawnPoint, FRotator& startRotator);
