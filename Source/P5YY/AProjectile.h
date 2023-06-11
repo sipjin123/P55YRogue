@@ -40,7 +40,7 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
 		bool ExplodesOnCollision;
-	// Test for Tortoise
+	// Test for SmartSvn
 	// Test from Sourcetree
 public:
 	UFUNCTION(BlueprintCallable, Category = "Properties")
