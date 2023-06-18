@@ -41,7 +41,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
 		bool ExplodesOnCollision;
 	// Test for SmartSvn
-	// Test from Sourcetree
+	// Test from Sourcetree part 2
 public:
 	UFUNCTION(BlueprintCallable, Category = "Properties")
 	void InitializeProjectile(FVector& newDirection, FVector& spawnPoint, FRotator& startRotator);
