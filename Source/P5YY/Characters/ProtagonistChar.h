@@ -6,6 +6,7 @@
 
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
+#include "AbilitySystemInterface.h"
 
 #include "P5YY/AProjectile.h"
 #include "P5YY/ACEquipmentHandling.h"
@@ -14,7 +15,7 @@
 #include "ProtagonistChar.generated.h"
 
 UCLASS()
-class P5YY_API AProtagonistChar : public ACharacter
+class P5YY_API AProtagonistChar : public ACharacter, public  IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
@@ -55,6 +56,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 		class UACEquipmentHandling* EquipmentHandling;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+		class UACMobilityHandling* MobilityHandling;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 		TSubclassOf<UPlayerStatWidget> PlayerHUDClass;
 
@@ -67,8 +71,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		AActor* TargetActor;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AActor* TargetMobilityNode;
+	
 	UFUNCTION(BlueprintCallable, Category = "Group1")
 		void LockTarget();
+
+	UFUNCTION(BlueprintCallable, Category = "Group1")
+		void AssignLockTarget(AActor* NewTargetActor);
 
 	UFUNCTION(BlueprintCallable, Category = "Group1")
 		void UpdateEquipmentHandling();
@@ -83,6 +93,17 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "Group1")
 	void SpawnProjectile();
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="GAS", meta = (AllowPrivateAccess="true"))
+	class UAbilitySystemComponent* AbilitySystemComponent;
+
+	virtual class UAbilitySystemComponent* GetAbilitySystemComponent() const override
+	{
+		return  AbilitySystemComponent;
+	}
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="GAS", meta = (AllowPrivateAccess="true"))
+	const class UBaseAttributeSet* BaseAttributeSet;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

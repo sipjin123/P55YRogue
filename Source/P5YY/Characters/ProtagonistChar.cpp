@@ -18,7 +18,11 @@
 #include "Kismet/KismetMathLibrary.h"
 
 #include "P5YY/ACEquipmentHandling.h"
+#include "P5YY/ACMobilityHandling.h"
+#include "P5YY/ACMobilityHandling.h"
 #include "P5YY/UIWidgets/PlayerStatWidget.h"
+#include "AbilitySystemComponent.h"
+#include "BaseAttributeSet.h"
 
 // Sets default values
 AProtagonistChar::AProtagonistChar()
@@ -52,12 +56,15 @@ AProtagonistChar::AProtagonistChar()
 	FollowCamera = CreateDefaultSubobject<UCameraComponent>(TEXT("FollowCamera"));
 	FollowCamera->SetupAttachment(CameraBoom, USpringArmComponent::SocketName); // Attach the camera to the end of the boom and let the boom adjust to match the controller orientation
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
+
+	AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
 }
 
 // Called when the game starts or when spawned
 void AProtagonistChar::BeginPlay()
 {
 	Super::BeginPlay();
+	MobilityHandling = GetOwner()->FindComponentByClass<UACMobilityHandling>();
 
 	//Add Input Mapping Context
 	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
@@ -70,6 +77,11 @@ void AProtagonistChar::BeginPlay()
 		{
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
+	}
+
+	if (IsValid(AbilitySystemComponent))
+	{
+		BaseAttributeSet = AbilitySystemComponent->GetSet<UBaseAttributeSet>();
 	}
 }
 
@@ -144,32 +156,52 @@ void AProtagonistChar::Look(const FInputActionValue& Value)
 
 void AProtagonistChar::SpawnProjectile() {
 	if (CustomProjectile) {
+		// Spawns the projectile new instance
 		AAProjectile* NewProjectile = GetWorld()->SpawnActor<AAProjectile>(CustomProjectile);
+
+		// Initialize new projectile parameters
 		FVector newDir = GetActorForwardVector() * 5;
 		FRotator newRot = GetActorRotation();
 		FVector newLoc = GetActorLocation();
 		NewProjectile->InitializeProjectile(newDir, newLoc, newRot);
+
+		// Assign target node to allow player to use mobility on node
+		TargetMobilityNode = NewProjectile;
+		MobilityHandling->RegisterTargetActor(NewProjectile);
 	}
 }
 
 void AProtagonistChar::UpdateEquipmentHandling() {
+	// Trigger Actor Component for equipment handling
 	if (EquipmentHandling == NULL) {
 		UACEquipmentHandling* newHandler = AActor::FindComponentByClass<UACEquipmentHandling>();
 		if (newHandler) {
 			EquipmentHandling = newHandler;
-			EquipmentHandling->InitializeCompponent();
+			EquipmentHandling->InitializeComponent();
 		}
 	}
 	else {
-		EquipmentHandling->InitializeCompponent();
+		EquipmentHandling->InitializeComponent();
 	}
 }
 
 void AProtagonistChar::LockTarget() {
+	// Snap player rotation to lock on target
 	APlayerController* ControllerRef = UGameplayStatics::GetPlayerController(GetWorld(), 0);
-
 	if (TargetActor != NULL) {
+		UE_LOG(LogTemp, Warning, TEXT("Lock Target Success: {%s}"), TargetActor);
 		FRotator NewRotation = UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), TargetActor->GetActorLocation());
 		ControllerRef->SetControlRotation(NewRotation);
+	} else {
+		UE_LOG(LogTemp, Warning, TEXT("Lock Target Success"));
 	}
+}
+
+void AProtagonistChar::AssignLockTarget(AActor* NewTargetActor)
+{
+	// Assign target actor to lock on
+#if WITH_EDITOR
+	UE_LOG(LogTemp, Warning, TEXT("Registered New Target to Protagonist: %s"), *NewTargetActor->GetActorLabel());
+#endif
+	TargetActor = NewTargetActor;
 }

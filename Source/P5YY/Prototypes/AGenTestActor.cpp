@@ -116,7 +116,9 @@ void AAGenTestActor::GetOverlapActorFunc() {
 			NearestDistance = Distance;
 			UE_LOG(LogTemp, Warning, TEXT("Overwriting the nearest distance by index:{%d}"), i);
 		}
+#if WITH_EDITOR
 		UE_LOG(LogTemp, Warning, TEXT("%s --> %f"), *Result[i]->GetActorLabel(), Distance);
+#endif
 	}
 
 	UE_LOG(LogTemp, Warning, TEXT("The nearest distance is: %f"), NearestDistance);
@@ -164,8 +166,9 @@ void AAGenTestActor::GetOverlapActorRadiusFunc() {
 			NearestDistance = Distance;
 			UE_LOG(LogTemp, Warning, TEXT("Overwriting the nearest distance by index:{%d}"), i);
 		}
-
+#if WITH_EDITOR
 		UE_LOG(LogTemp, Warning, TEXT("%s --> %f"), *Result[i]->GetActorLabel(), Distance);
+#endif
 	}
 	UE_LOG(LogTemp, Warning, TEXT("The nearest distance is: %f"), NearestDistance);
 }
