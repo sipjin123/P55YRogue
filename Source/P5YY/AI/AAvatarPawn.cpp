@@ -20,7 +20,12 @@ void AAAvatarPawn::BeginPlay()
 	
 	if (IsValid(AbilitySystemComponent))
 	{
+		UE_LOG(LogTemp, Warning, TEXT("AI Base Attribute Success"));
 		BaseAttributeSet = AbilitySystemComponent->GetSet<UBaseAttributeSet>();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("AI Base Attribute Fail"));
 	}
 }
 
