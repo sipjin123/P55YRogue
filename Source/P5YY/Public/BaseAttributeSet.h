@@ -20,24 +20,25 @@ class P5YY_API UBaseAttributeSet : public UAttributeSet
 public:
 	UBaseAttributeSet();
 
-	virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
+	//virtual void GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const override;
 	
-	UFUNCTION()
-	virtual void OnRep_Health(const FGameplayAttributeData& OldHealth);
+	//UFUNCTION()
+	//virtual void OnRep_Health(const FGameplayAttributeData& OldHealth);
 
-	UPROPERTY(BlueprintReadOnly, ReplicatedUsing=OnRep_Health, Category="Attributes")
+	UPROPERTY(BlueprintReadOnly, Category="AttributesNew")
 	FGameplayAttributeData Health;
 	ATTRIBUTE_ASSESSORS(UBaseAttributeSet, Health);
 	
-	UPROPERTY(BlueprintReadOnly, ReplicatedUsing=OnRep_Health, Category="Attributes")
-	FGameplayAttributeData MaxHealth;
-	ATTRIBUTE_ASSESSORS(UBaseAttributeSet, MaxHealth);
-	
-	UPROPERTY(BlueprintReadOnly, Category="Attributes")
+	UPROPERTY(BlueprintReadOnly, Category="AttributesNew")
 	FGameplayAttributeData Mana;
 	ATTRIBUTE_ASSESSORS(UBaseAttributeSet, Mana);
 	
-	UPROPERTY(BlueprintReadOnly, Category="Attributes")
+	UPROPERTY(BlueprintReadOnly, Category="AttributesNew")
 	FGameplayAttributeData MaxMana;
 	ATTRIBUTE_ASSESSORS(UBaseAttributeSet, MaxMana);
+	
+	UPROPERTY(BlueprintReadOnly, Category="AttributesNew")
+	FGameplayAttributeData MaxHealth;
+	ATTRIBUTE_ASSESSORS(UBaseAttributeSet, MaxHealth);
+	
 };

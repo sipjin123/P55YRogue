@@ -2,6 +2,7 @@
 
 
 #include "AAvatarPawn.h"
+#include "AbilitySystemComponent.h"
 
 // Sets default values
 AAAvatarPawn::AAAvatarPawn()
@@ -9,6 +10,7 @@ AAAvatarPawn::AAAvatarPawn()
  	// Set this pawn to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
+	AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
 }
 
 // Called when the game starts or when spawned
@@ -16,6 +18,10 @@ void AAAvatarPawn::BeginPlay()
 {
 	Super::BeginPlay();
 	
+	if (IsValid(AbilitySystemComponent))
+	{
+		BaseAttributeSet = AbilitySystemComponent->GetSet<UBaseAttributeSet>();
+	}
 }
 
 // Called every frame

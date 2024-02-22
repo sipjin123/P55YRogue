@@ -4,10 +4,12 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "AbilitySystemInterface.h"
+#include "P5YY\Public\BaseAttributeSet.h"
 #include "AAvatarPawn.generated.h"
 
 UCLASS()
-class P5YY_API AAAvatarPawn : public APawn
+class P5YY_API AAAvatarPawn : public APawn, public  IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
@@ -26,4 +28,15 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="GAS", meta = (AllowPrivateAccess="true"))
+	class UAbilitySystemComponent* AbilitySystemComponent;
+
+	virtual class UAbilitySystemComponent* GetAbilitySystemComponent() const override
+	{
+		return  AbilitySystemComponent;
+	}
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="GAS", meta = (AllowPrivateAccess="true"))
+	const class UBaseAttributeSet* BaseAttributeSet;
+	
 };
