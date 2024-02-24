@@ -44,12 +44,15 @@ EBTNodeResult::Type UAvatarBTTask_FindRandomEnemy::ExecuteTask(UBehaviorTreeComp
 	FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 
 	UE_LOG(LogTemp, Warning, TEXT("Hello:, %f"), SearchRadius);
+	
+	Super::ExecuteTask(OwnerComp, NodeMemory);
 	return EBTNodeResult::Succeeded;
 }
 
 void UAvatarBTTask_FindRandomEnemy::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds)
 {
 	//UE_LOG(LogTemp, Warning, TEXT("Tick Task"));
+	Super::TickTask(OwnerComp, NodeMemory, DeltaSeconds);
 }
 
 FString UAvatarBTTask_FindRandomEnemy::GetStaticDescription() const

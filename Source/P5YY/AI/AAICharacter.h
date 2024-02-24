@@ -3,19 +3,19 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Pawn.h"
+#include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
 #include "P5YY\Public\BaseAttributeSet.h"
-#include "AAvatarPawn.generated.h"
+#include "AAICharacter.generated.h"
 
 UCLASS()
-class P5YY_API AAAvatarPawn : public APawn, public IAbilitySystemInterface
+class P5YY_API AAAICharacter : public ACharacter, public IAbilitySystemInterface
 {
 	GENERATED_BODY()
 
 public:
-	// Sets default values for this pawn's properties
-	AAAvatarPawn();
+	// Sets default values for this character's properties
+	AAAICharacter();
 
 protected:
 	// Called when the game starts or when spawned
@@ -38,5 +38,4 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="GAS", meta = (AllowPrivateAccess="true"))
 	const class UBaseAttributeSet* BaseAttributeSet;
-	
 };

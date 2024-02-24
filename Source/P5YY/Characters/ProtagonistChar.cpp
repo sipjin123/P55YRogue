@@ -19,7 +19,6 @@
 
 #include "P5YY/ACEquipmentHandling.h"
 #include "P5YY/ACMobilityHandling.h"
-#include "P5YY/ACMobilityHandling.h"
 #include "P5YY/UIWidgets/PlayerStatWidget.h"
 #include "AbilitySystemComponent.h"
 #include "BaseAttributeSet.h"
@@ -64,8 +63,11 @@ AProtagonistChar::AProtagonistChar()
 void AProtagonistChar::BeginPlay()
 {
 	Super::BeginPlay();
-	MobilityHandling = GetOwner()->FindComponentByClass<UACMobilityHandling>();
-
+	if (GetOwner())
+	{
+		MobilityHandling = GetOwner()->FindComponentByClass<UACMobilityHandling>();
+	}
+	
 	//Add Input Mapping Context
 	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
 	{
@@ -122,7 +124,6 @@ void AProtagonistChar::Move(const FInputActionValue& Value)
 {
 	// input is a Vector2D
 	FVector2D MovementVector = Value.Get<FVector2D>();
-
 	if (Controller != nullptr)
 	{
 		// find out which way is forward
