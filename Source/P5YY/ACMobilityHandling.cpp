@@ -16,6 +16,7 @@ UACMobilityHandling::UACMobilityHandling()
 void UACMobilityHandling::BeginPlay()
 {
 	Super::BeginPlay();
+	SourceActor = Cast<AProtagonistChar>(GetOwner());
 }
 
 // Called every frame

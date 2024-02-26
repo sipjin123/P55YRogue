@@ -22,6 +22,7 @@
 #include "P5YY/UIWidgets/PlayerStatWidget.h"
 #include "AbilitySystemComponent.h"
 #include "BaseAttributeSet.h"
+#include "Components/SphereComponent.h"
 
 // Sets default values
 AProtagonistChar::AProtagonistChar()
@@ -155,15 +156,16 @@ void AProtagonistChar::Look(const FInputActionValue& Value)
 	}
 }
 
-void AProtagonistChar::SpawnProjectile() {
+void AProtagonistChar::SpawnProjectile(FVector newSpawnPt) {
+	ProjectileSpawnPt = newSpawnPt;
 	if (CustomProjectile) {
 		// Spawns the projectile new instance
 		AAProjectile* NewProjectile = GetWorld()->SpawnActor<AAProjectile>(CustomProjectile);
 
 		// Initialize new projectile parameters
-		FVector newDir = GetActorForwardVector() * 5;
+		FVector newDir = GetActorForwardVector() * ProjectileOffset;
 		FRotator newRot = GetActorRotation();
-		FVector newLoc = GetActorLocation();
+		FVector newLoc = ProjectileSpawnPt;
 		NewProjectile->InitializeProjectile(newDir, newLoc, newRot);
 
 		// Assign target node to allow player to use mobility on node

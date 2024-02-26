@@ -66,6 +66,12 @@ public:
 		UPlayerStatWidget* PlayerHUD;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		FVector ProjectileSpawnPt;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float ProjectileOffset = 20;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		int32 TestID;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -91,7 +97,7 @@ protected:
 	void Look(const FInputActionValue& Value);
 
 	UFUNCTION(BlueprintCallable, Category = "Group1")
-	void SpawnProjectile();
+	void SpawnProjectile(FVector newSpawnPt);
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="GAS", meta = (AllowPrivateAccess="true"))
 	class UAbilitySystemComponent* AbilitySystemComponent;
