@@ -43,7 +43,7 @@ EBTNodeResult::Type UAvatarBTTask_FindRandomEnemy::ExecuteTask(UBehaviorTreeComp
 	// Signal the BehaviorTreeComponent that the task finished with success
 	FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 
-	UE_LOG(LogTemp, Warning, TEXT("Hello:, %f"), SearchRadius);
+	UE_LOG(LogTemp, Warning, TEXT("FindRandEnemy Task Node:, %f"), SearchRadius);
 	
 	Super::ExecuteTask(OwnerComp, NodeMemory);
 	return EBTNodeResult::Succeeded;

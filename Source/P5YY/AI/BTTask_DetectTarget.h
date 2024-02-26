@@ -4,16 +4,16 @@
 
 #include "CoreMinimal.h"
 #include "BehaviorTree/Tasks/BTTask_BlueprintBase.h"
-#include "BTTask_LookAt.generated.h"
+#include "BTTask_DetectTarget.generated.h"
 
 /**
  * 
  */
 UCLASS(Blueprintable)
-class P5YY_API UBTTask_LookAt : public UBTTask_BlueprintBase
+class P5YY_API UBTTask_DetectTarget : public UBTTask_BlueprintBase
 {
 	GENERATED_BODY()
-	UBTTask_LookAt();
+	UBTTask_DetectTarget();
 private:
 	virtual EBTNodeResult::Type ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory) override;
 
@@ -22,12 +22,9 @@ protected:
 	virtual void TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory, float DeltaSeconds) override;
 	
 private:
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = true))
-	float CompletionValue = 1.0f;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Search", meta = (AllowPrivateAccess = true))
+	float SearchRadius = 500.0f;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta = (AllowPrivateAccess = true))
-	float Magnitude = 1.0f;
-
 	// Mandatory Behavior Tree Task functions, otherwise will cause crash
 	void OnGameplayTaskActivated(UGameplayTask& Task) override;
 	void OnGameplayTaskDeactivated(UGameplayTask& Task) override;

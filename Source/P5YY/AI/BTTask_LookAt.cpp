@@ -3,7 +3,6 @@
 
 #include "BTTask_LookAt.h"
 #include "AIController.h"
-#include "NavigationSystem.h"
 #include "BehaviorTree/BlackboardComponent.h"
 
 UBTTask_LookAt::UBTTask_LookAt()
@@ -27,8 +26,8 @@ void UBTTask_LookAt::OnGameplayTaskDeactivated(UGameplayTask& Task) {
 
 EBTNodeResult::Type UBTTask_LookAt::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
-	float DrawRadius = 12.0f;
-	float Duration = 5.0f;
+	float DrawRadius = 10.0f;
+	float Duration = 3.0f;
 
 	AAIController* AIController = OwnerComp.GetAIOwner();
 	FVector newLocation = AIController->GetBlackboardComponent()->GetValueAsVector(MyBlackboardKey.SelectedKeyName);
@@ -45,9 +44,4 @@ void UBTTask_LookAt::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemo
 	
 	// Do logic here then finish task
 	//FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
-}
-
-FString UBTTask_LookAt::GetStaticDescription() const
-{
-	return FString::Printf(TEXT("Vector"));
 }

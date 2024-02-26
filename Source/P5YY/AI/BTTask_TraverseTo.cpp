@@ -17,10 +17,9 @@ UBTTask_TraverseTo::UBTTask_TraverseTo() {
 EBTNodeResult::Type UBTTask_TraverseTo::ExecuteTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemory)
 {
 	AAIController* AIController = OwnerComp.GetAIOwner();
-	const APawn* AIPawn = AIController->GetPawn();
 	
 	float DrawRadius = 12.0f;
-	float Duration = 5.0f;
+	float Duration = 3.0f;
 
 	FVector newLocation = AIController->GetBlackboardComponent()->GetValueAsVector(MyBlackboardKey.SelectedKeyName);
 	DrawDebugSphere(GetWorld(), FVector(newLocation.X, newLocation.Y, newLocation.Z), DrawRadius, 16, FColor::Orange, false, Duration);
