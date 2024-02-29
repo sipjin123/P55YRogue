@@ -80,6 +80,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		AActor* TargetMobilityNode;
 	
+	UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite)
+		FVector TargetMobilityLocation;
+	
 	UFUNCTION(BlueprintCallable, Category = "Group1")
 		void LockTarget();
 
@@ -96,8 +99,13 @@ protected:
 	/** Called for looking input */
 	void Look(const FInputActionValue& Value);
 
+	UFUNCTION(Server, Reliable, WithValidation, BlueprintCallable, Category="NetworkCombat")
+	void Server_SpawnProjectile(FVector newSpawnPt);
+	bool Server_SpawnProjectile_Validate(FVector newSpawnPt);
+	void Server_SpawnProjectile_Implementation(FVector newSpawnPt);
+	
 	UFUNCTION(BlueprintCallable, Category = "Group1")
-	void SpawnProjectile(FVector newSpawnPt);
+	void SpawnProjectileAt(FVector newSpawnPt);
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="GAS", meta = (AllowPrivateAccess="true"))
 	class UAbilitySystemComponent* AbilitySystemComponent;
@@ -109,6 +117,12 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="GAS", meta = (AllowPrivateAccess="true"))
 	const class UBaseAttributeSet* BaseAttributeSet;
+
+public:
+	// Allows calling teleport event across c++ and BP
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "NetworkCombat")
+	void NetTeleport (FVector newLoc);
+	virtual void NetTeleport_Implementation(FVector newLoc);
 	
 protected:
 	// Called when the game starts or when spawned

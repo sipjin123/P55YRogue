@@ -23,6 +23,7 @@
 #include "AbilitySystemComponent.h"
 #include "BaseAttributeSet.h"
 #include "Components/SphereComponent.h"
+#include "Net/UnrealNetwork.h"
 
 // Sets default values
 AProtagonistChar::AProtagonistChar()
@@ -156,7 +157,17 @@ void AProtagonistChar::Look(const FInputActionValue& Value)
 	}
 }
 
-void AProtagonistChar::SpawnProjectile(FVector newSpawnPt) {
+bool AProtagonistChar::Server_SpawnProjectile_Validate(FVector newSpawnPt)
+{
+	return true;
+}
+
+void AProtagonistChar::Server_SpawnProjectile_Implementation(FVector newSpawnPt)
+{
+	SpawnProjectileAt(newSpawnPt);
+}
+
+void AProtagonistChar::SpawnProjectileAt(FVector newSpawnPt) {
 	ProjectileSpawnPt = newSpawnPt;
 	if (CustomProjectile) {
 		// Spawns the projectile new instance
@@ -170,8 +181,15 @@ void AProtagonistChar::SpawnProjectile(FVector newSpawnPt) {
 
 		// Assign target node to allow player to use mobility on node
 		TargetMobilityNode = NewProjectile;
+		TargetMobilityLocation = NewProjectile->GetActorLocation();
 		MobilityHandling->RegisterTargetActor(NewProjectile);
 	}
+}
+
+void AProtagonistChar::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+	DOREPLIFETIME(AProtagonistChar, TargetMobilityLocation)
 }
 
 void AProtagonistChar::UpdateEquipmentHandling() {
@@ -198,6 +216,11 @@ void AProtagonistChar::LockTarget() {
 	} else {
 		UE_LOG(LogTemp, Warning, TEXT("Lock Target Success"));
 	}
+}
+
+void AProtagonistChar::NetTeleport_Implementation(FVector newLoc)
+{
+	UE_LOG(LogTemp, Warning, TEXT("ShouldTeleport"));
 }
 
 void AProtagonistChar::AssignLockTarget(AActor* NewTargetActor)

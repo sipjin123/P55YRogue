@@ -46,15 +46,36 @@ void UACMobilityHandling::RegisterTargetActor(AActor* NewTargetActor)
 	}
 }
 
-void UACMobilityHandling::TriggerMobilityPoint(FVector coordinates, AActor* actorRef)
+void UACMobilityHandling::ServerTriggerMobilityPoint_Implementation(FVector coordinates, AActor* actorRef)
+{
+	// Handle teleport only on server side since transform is replicated
+	if (SourceActor->TargetMobilityNode)
+	{
+		SourceActor->NetTeleport(SourceActor->TargetMobilityNode->GetActorLocation());
+	}
+	else
+	{
+		SourceActor->NetTeleport(TargetLocation);
+	}
+
+	// Handle Debug Behavior here across all clients
+	MultiTriggerMobilityPoint(coordinates, actorRef);
+}
+
+void UACMobilityHandling::MultiTriggerMobilityPoint_Implementation(FVector coordinates, AActor* actorRef)
 {
 	// Assign Raw Coordinates
 	TargetLocation = coordinates;
 	if (actorRef != NULL)
 	{
+		UE_LOG(LogTemp, Warning, TEXT("MobilityComponent Warp Client using Actor"));
 		// Extract target actor coordinates before destroying
 		TargetLocation = actorRef->GetActorLocation();
 		actorRef->Destroy();
+	}
+	else
+	{
+		UE_LOG(LogTemp, Warning, TEXT("MobilityComponent Warp Client using Vector"));
 	}
 
 	// Generate debug object to simulate visual indicator where the spawn mobility point is

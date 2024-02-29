@@ -44,6 +44,11 @@ public:
 	void InitializeComponent();
 	void RegisterTargetActor(AActor* NewTargetActor);
 	
-	UFUNCTION(BlueprintCallable, Category = "Properties")
-	void TriggerMobilityPoint(FVector coordinates, AActor* actorRef);
+	UFUNCTION(Server, Reliable, BlueprintCallable, Category = "Properties")
+	void ServerTriggerMobilityPoint(FVector coordinates, AActor* actorRef);
+	void ServerTriggerMobilityPoint_Implementation(FVector coordinates, AActor* actorRef);
+	
+	UFUNCTION(NetMulticast, Reliable, BlueprintCallable, Category = "Properties")
+	void MultiTriggerMobilityPoint(FVector coordinates, AActor* actorRef);
+	void MultiTriggerMobilityPoint_Implementation(FVector coordinates, AActor* actorRef);
 };
