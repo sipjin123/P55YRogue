@@ -1,10 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
+#include "BTTask_FindPatrolNode.h"
 #include "AIController.h"
 #include "NavigationSystem.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "BTTask_FindPatrolNode.h"
 
 UBTTask_FindPatrolNode::UBTTask_FindPatrolNode()
 {

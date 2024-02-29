@@ -1,10 +1,9 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
-
+#include "BTTask_DetectTarget.h"
 #include "AIController.h"
 #include "NavigationSystem.h"
 #include "BehaviorTree/BlackboardComponent.h"
-#include "BTTask_DetectTarget.h"
 
 UBTTask_DetectTarget::UBTTask_DetectTarget()
 {
