@@ -7,12 +7,15 @@
 #include "GameFramework/Character.h"
 #include "InputActionValue.h"
 #include "AbilitySystemInterface.h"
+#include "BaseAttributeSet.h"
 
 #include "P5YY/AProjectile.h"
 #include "P5YY/ACEquipmentHandling.h"
 #include "P5YY/UIWidgets/PlayerStatWidget.h"
 
 #include "ProtagonistChar.generated.h"
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FAttributeChange, int, AttributeValue);
 
 UCLASS()
 class P5YY_API AProtagonistChar : public ACharacter, public  IAbilitySystemInterface
@@ -136,4 +139,20 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	// UPROPERTY(BlueprintReadOnly, Category = "Mana", ReplicatedUsing=OnRep_Mana)
+	// GAMEPLAYATTRIBUTE_PROPERTY_GETTER(URPGAttributeSet, Mana)
+
+	// This callback can be used by the UI.
+	UPROPERTY(BlueprintAssignable, Category = "Attribute callbacks")
+	FAttributeChange OnManaChange;
+
+	// The callback to be registered within AbilitySystem.
+	void OnManaUpdated(const FOnAttributeChangeData& Data) const;
+	
+	// This callback can be used by the UI.
+	UPROPERTY(BlueprintAssignable, Category = "Attribute callbacks")
+	FAttributeChange OnHealthChange;
+
+	// The callback to be registered within AbilitySystem.
+	void OnHealthUpdated(const FOnAttributeChangeData& Data) const;
 };

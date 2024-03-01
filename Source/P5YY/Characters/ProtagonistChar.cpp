@@ -59,6 +59,7 @@ AProtagonistChar::AProtagonistChar()
 	FollowCamera->bUsePawnControlRotation = false; // Camera does not rotate relative to arm
 
 	AbilitySystemComponent = CreateDefaultSubobject<UAbilitySystemComponent>(TEXT("AbilitySystemComponent"));
+	AbilitySystemComponent->SetIsReplicated(true);
 }
 
 // Called when the game starts or when spawned
@@ -86,6 +87,8 @@ void AProtagonistChar::BeginPlay()
 	if (IsValid(AbilitySystemComponent))
 	{
 		BaseAttributeSet = AbilitySystemComponent->GetSet<UBaseAttributeSet>();
+        AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(UBaseAttributeSet::GetManaAttribute()).AddUObject(this, &AProtagonistChar::OnManaUpdated);
+        AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(UBaseAttributeSet::GetHealthAttribute()).AddUObject(this, &AProtagonistChar::OnHealthUpdated);
 	}
 }
 
@@ -230,4 +233,16 @@ void AProtagonistChar::AssignLockTarget(AActor* NewTargetActor)
 	UE_LOG(LogTemp, Warning, TEXT("Registered New Target to Protagonist: %s"), *NewTargetActor->GetActorLabel());
 #endif
 	TargetActor = NewTargetActor;
+}
+
+void AProtagonistChar::OnManaUpdated(const FOnAttributeChangeData& Data) const
+{
+	// Fire the callback. Data contains more than NewValue, in case it is needed.
+	OnManaChange.Broadcast(Data.NewValue);
+}
+
+void AProtagonistChar::OnHealthUpdated(const FOnAttributeChangeData& Data) const
+{
+	// Fire the callback. Data contains more than NewValue, in case it is needed.
+	OnHealthChange.Broadcast(Data.NewValue);
 }
