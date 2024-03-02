@@ -6,11 +6,13 @@
 #include "GameFramework/Actor.h"
 #include "AProjectile.generated.h"
 
+event void FExampleEvent(int Counter);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FReturnedToOwner);
+
 UCLASS()
 class P5YY_API AAProjectile : public AActor
 {
 	GENERATED_BODY()
-	
 public:	
 	// Sets default values for this actor's properties
 	AAProjectile();
@@ -20,7 +22,7 @@ public:
 		class USphereComponent* CollisionSphere;
 
 	// Projectile movement component.
-	UPROPERTY(EditAnywhere, Category = "Movement")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Movement")
 		class UProjectileMovementComponent* ProjectileMovementComponent;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Display")
@@ -44,7 +46,7 @@ public:
 	// Test from Sourcetree part 2
 public:
 	UFUNCTION(BlueprintCallable, Category = "Properties")
-	void InitializeProjectile(FVector& newDirection, FVector& spawnPoint, FRotator& startRotator);
+	void InitializeProjectile(FVector newDirection, FVector spawnPoint, FRotator startRotator);
 
 protected:
 	// Called when the game starts or when spawned
@@ -54,4 +56,7 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+	// Allows calling teleport event across c++ and BP
+	UPROPERTY(BlueprintCallable, BlueprintAssignable)
+	FReturnedToOwner HasReturnedToOwner; // Can be called via c++ using Broadcast
 };

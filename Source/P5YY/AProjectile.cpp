@@ -50,7 +50,7 @@ void AAProjectile::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void AAProjectile::InitializeProjectile(FVector& newDirection, FVector& spawnPoint, FRotator& startRotator) {
+void AAProjectile::InitializeProjectile(FVector newDirection, FVector spawnPoint, FRotator startRotator) {
 
     SetActorLocation(spawnPoint);
     SetActorRotation(startRotator);

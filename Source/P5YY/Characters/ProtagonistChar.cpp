@@ -175,6 +175,7 @@ void AProtagonistChar::SpawnProjectileAt(FVector newSpawnPt) {
 	if (CustomProjectile) {
 		// Spawns the projectile new instance
 		AAProjectile* NewProjectile = GetWorld()->SpawnActor<AAProjectile>(CustomProjectile);
+		NewProjectile->SetOwner(this);
 
 		// Initialize new projectile parameters
 		FVector newDir = GetActorForwardVector() * ProjectileOffset;
