@@ -6,7 +6,6 @@
 #include "GameFramework/Actor.h"
 #include "AProjectile.generated.h"
 
-event void FExampleEvent(int Counter);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FReturnedToOwner);
 
 UCLASS()

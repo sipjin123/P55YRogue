@@ -82,6 +82,9 @@ void AProtagonistChar::BeginPlay()
 		{
 			Subsystem->AddMappingContext(DefaultMappingContext, 0);
 		}
+	} else
+	{
+		UE_LOG(LogTemp, Error, TEXT("Failed to Find Player Controller"));
 	}
 
 	if (IsValid(AbilitySystemComponent))
