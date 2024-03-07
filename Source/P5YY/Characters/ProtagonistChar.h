@@ -15,6 +15,7 @@
 
 #include "ProtagonistChar.generated.h"
 
+DECLARE_LOG_CATEGORY_EXTERN(CharacterLog, Log, All);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FAttributeChange, int, AttributeValue);
 
 UCLASS()

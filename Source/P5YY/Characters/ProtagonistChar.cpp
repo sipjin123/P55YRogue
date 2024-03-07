@@ -25,6 +25,8 @@
 #include "Components/SphereComponent.h"
 #include "Net/UnrealNetwork.h"
 
+DEFINE_LOG_CATEGORY(CharacterLog);
+
 // Sets default values
 AProtagonistChar::AProtagonistChar()
 {
@@ -84,7 +86,7 @@ void AProtagonistChar::BeginPlay()
 		}
 	} else
 	{
-		UE_LOG(LogTemp, Error, TEXT("Failed to Find Player Controller"));
+		UE_LOG(CharacterLog, Error, TEXT("Failed to Find Player Controller"));
 	}
 
 	if (IsValid(AbilitySystemComponent))
@@ -217,24 +219,24 @@ void AProtagonistChar::LockTarget() {
 	// Snap player rotation to lock on target
 	APlayerController* ControllerRef = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 	if (TargetActor != NULL) {
-		UE_LOG(LogTemp, Warning, TEXT("Lock Target Success: {%s}"), TargetActor);
+		UE_LOG(CharacterLog, Warning, TEXT("Lock Target Success: {%s}"), TargetActor);
 		FRotator NewRotation = UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), TargetActor->GetActorLocation());
 		ControllerRef->SetControlRotation(NewRotation);
 	} else {
-		UE_LOG(LogTemp, Warning, TEXT("Lock Target Success"));
+		UE_LOG(CharacterLog, Warning, TEXT("Lock Target Success"));
 	}
 }
 
 void AProtagonistChar::NetTeleport_Implementation(FVector newLoc)
 {
-	UE_LOG(LogTemp, Warning, TEXT("ShouldTeleport"));
+	UE_LOG(CharacterLog, Warning, TEXT("ShouldTeleport"));
 }
 
 void AProtagonistChar::AssignLockTarget(AActor* NewTargetActor)
 {
 	// Assign target actor to lock on
 #if WITH_EDITOR
-	UE_LOG(LogTemp, Warning, TEXT("Registered New Target to Protagonist: %s"), *NewTargetActor->GetActorLabel());
+	UE_LOG(CharacterLog, Warning, TEXT("Registered New Target to Protagonist: %s"), *NewTargetActor->GetActorLabel());
 #endif
 	TargetActor = NewTargetActor;
 }

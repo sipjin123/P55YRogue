@@ -37,6 +37,9 @@ public:
 		float Velocity;
 		
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
+		int PassableTargets;
+		
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
 		float Lifetime;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
