@@ -12,13 +12,15 @@ AAProjectile::AAProjectile()
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
 
-    SceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
-    RootComponent = SceneComponent;
+    //SceneComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootComponent"));
+    //RootComponent = SceneComponent;
 
     CollisionSphere = CreateDefaultSubobject<USphereComponent>(TEXT("SphereCollider"));
     CollisionSphere->SetSphereRadius(15);
     CollisionSphere->SetCollisionProfileName("SphereCollision");
-    CollisionSphere->SetupAttachment(RootComponent);
+
+	RootComponent = CollisionSphere;
+    //CollisionSphere->SetupAttachment(RootComponent);
 
     StaticMeshSource = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("StatMeshComp"));
     StaticMeshSource->SetVisibility(true);
