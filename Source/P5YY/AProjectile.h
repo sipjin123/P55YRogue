@@ -43,6 +43,9 @@ public:
 		float Lifetime;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
+		bool IgnorePreset;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
 		bool ExplodesOnCollision;
 	// Test for SmartSvn
 	// Test from Sourcetree part 2
