@@ -19,7 +19,13 @@ class P5YY_API IIGenericAI
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
-
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
+	void EquipWeapon();
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
+	void UnequipWeapon();
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
+	void Attack();
+	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Setup")
 	void OnSetCombatRadius(float MeleeRadius, float MeleeStrafeRadius, float RangedRadius, float RangedStrafeRadius);
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Setup")

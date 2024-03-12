@@ -5,8 +5,12 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
+#include "P5YY/Enums/GameEnums.h"
 #include "P5YY\Public\BaseAttributeSet.h"
 #include "AAICharacter.generated.h"
+
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnEquipWeapon);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnUnequipWeapon);
 
 UCLASS()
 class P5YY_API AAAICharacter : public ACharacter, public IAbilitySystemInterface
@@ -51,4 +55,13 @@ public:
 	float WalkSpeed;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 	float RunSpeed;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	EEnemyType EnemyType;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	ECombatType CombatType;
+	
+	UPROPERTY(BlueprintCallable, BlueprintAssignable)
+	FOnEquipWeapon OnEquipWeaponTrigger;
+	UPROPERTY(BlueprintCallable, BlueprintAssignable)
+	FOnUnequipWeapon OnUnequipWeaponTrigger;
 };
