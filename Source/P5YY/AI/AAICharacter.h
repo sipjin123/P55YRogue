@@ -38,4 +38,17 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="GAS", meta = (AllowPrivateAccess="true"))
 	const class UBaseAttributeSet* BaseAttributeSet;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	float MeleeRadius;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	float MeleeStrafeRadius;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	float RangedRadius;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	float RangedStrafeRadius;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	float WalkSpeed;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	float RunSpeed;
 };
