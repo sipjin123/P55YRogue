@@ -59,6 +59,8 @@ public:
 	EEnemyType EnemyType;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 	ECombatType CombatType;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	EMovementType MovementType;
 	
 	UPROPERTY(BlueprintCallable, BlueprintAssignable)
 	FOnEquipWeapon OnEquipWeaponTrigger;

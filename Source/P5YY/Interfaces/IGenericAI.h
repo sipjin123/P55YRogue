@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "P5YY/Enums/GameEnums.h"
 #include "UObject/Interface.h"
 #include "IGenericAI.generated.h"
 
@@ -30,11 +31,17 @@ public:
 	void OnSetCombatRadius(float MeleeRadius, float MeleeStrafeRadius, float RangedRadius, float RangedStrafeRadius);
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Setup")
 	void OnSetMovement(float WalkSpeed, float RunSpeed);
-
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Setup")
+	void OnSetMovementType(EMovementType MovementType);
+	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Setup")
 	void OnSetMaxLife(int MaxLife);
 	void OnSetMaxLife_Implementation(int MaxLife);
 
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Setup")
+	void OnGetCurrentHealth(float& Health);
+	void OnGetCurrentHealth_Implementation(float& Health);
+	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Setup")	
 	void OnGetCombatRadius(float& MeleeRadius, float &MeleeStrafeRadius, float& RangedRadius, float &RangedStrafeRadius);
 	void OnGetCombatRadius_Implementation(float& MeleeRadius, float &MeleeStrafeRadius, float& RangedRadius, float &RangedStrafeRadius);

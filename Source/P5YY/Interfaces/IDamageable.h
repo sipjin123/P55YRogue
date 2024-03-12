@@ -23,6 +23,6 @@ class P5YY_API IIDamageable
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
-	void OnDamage(int damage);
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
+	void OnTakeDamage(float damage);
 };

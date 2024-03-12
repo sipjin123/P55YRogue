@@ -18,6 +18,15 @@ enum class ECombatType : uint8 {
 };
 
 UENUM(BlueprintType)
+enum class EMovementType : uint8 {
+	None = 0,
+	Walking = 1,
+	Jogging = 2,
+	Running = 3,
+	Flying = 3
+};
+
+UENUM(BlueprintType)
 enum class EEnemyType : uint8 {
 	None = 0 UMETA(DisplayName = "None"),
 	Melee1 = 1 UMETA(DisplayName = "Droid"),
