@@ -9,6 +9,15 @@
  */
 
 UENUM(BlueprintType)
+enum class EFactionType : uint8 {
+	Neutral = 0 UMETA(DisplayName = "None"),
+	Allies = 1 UMETA(DisplayName = "Allies"),
+	Mechs = 2 UMETA(DisplayName = "Mechs"),
+	Ancients = 3 UMETA(DisplayName = "Ancients"),
+	Wildings = 4 UMETA(DisplayName = "Wildings")
+};
+
+UENUM(BlueprintType)
 enum class ECombatType : uint8 {
 	None = 0 UMETA(DisplayName = "None"),
 	Melee = 1 UMETA(DisplayName = "Melee"),

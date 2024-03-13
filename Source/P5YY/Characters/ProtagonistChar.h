@@ -11,6 +11,7 @@
 
 #include "P5YY/AProjectile.h"
 #include "P5YY/ACEquipmentHandling.h"
+#include "P5YY/Enums/GameEnums.h"
 #include "P5YY/UIWidgets/PlayerStatWidget.h"
 
 #include "ProtagonistChar.generated.h"
@@ -74,11 +75,13 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float ProjectileOffset = 20;
-
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
-	int AttackSlots = 1;
+		EFactionType FactionType;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
-	int MaxAttackSlots = 1;
+		int AttackSlots = 1;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+		int MaxAttackSlots = 1;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	bool IsAttacking;

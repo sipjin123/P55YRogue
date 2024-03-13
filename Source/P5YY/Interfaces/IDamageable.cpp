@@ -24,3 +24,8 @@ void IIDamageable::AttackStart_Implementation(int AttackSlotsNeeded, AActor* Tar
 {
 	AttackStart(AttackSlotsNeeded, TargetActor, Success);
 }
+
+void IIDamageable::GetFactionType_Implementation(EFactionType& FactionType)
+{
+	GetFactionType((FactionType));
+}

@@ -45,6 +45,8 @@ public:
 	const class UBaseAttributeSet* BaseAttributeSet;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	EFactionType FactionType;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	int AttackSlots = 1;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	int MaxAttackSlots = 1;
@@ -52,6 +54,9 @@ public:
 	FAttackEnded AttackEnded;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	bool IsAttacking;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	AActor* TargetActor;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 	float MeleeRadius;

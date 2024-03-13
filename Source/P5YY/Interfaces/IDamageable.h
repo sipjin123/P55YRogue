@@ -44,9 +44,18 @@ public:
 	void GetCurrentAttackSlot(int& Slots);
 	void GetCurrentAttackSlot_Implementation(int& Slots);
 	
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category="Combat")
+	AActor* GetTargetActor();
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category="Combat")
+	void SetTargetActor(AActor* NewTargetActor);
+	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
 	void AttackStart(int AttackSlotsNeeded, AActor *TargetActor, bool& Success);
 	void AttackStart_Implementation(int AttackSlotsNeeded, AActor *TargetActor, bool& Success);
+	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
+	void GetFactionType(EFactionType& FactionType);
+	void GetFactionType_Implementation(EFactionType& FactionType);
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
 	void AttackEnd(AActor *TargetActor);
