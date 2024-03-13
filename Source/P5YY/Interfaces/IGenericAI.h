@@ -26,13 +26,18 @@ public:
 	void UnequipWeapon();
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
 	void Attack();
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
+	void AttackTarget(AActor *TargetActor);
+	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Navigation")
+	void OnSetMovementType(EMovementType MovementType);
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Navigation")
+	void JumpToDestination(FVector Destination);
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Setup")
 	void OnSetCombatRadius(float MeleeRadius, float MeleeStrafeRadius, float RangedRadius, float RangedStrafeRadius);
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Setup")
 	void OnSetMovement(float WalkSpeed, float RunSpeed);
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Setup")
-	void OnSetMovementType(EMovementType MovementType);
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Setup")
 	void OnSetMaxLife(int MaxLife);

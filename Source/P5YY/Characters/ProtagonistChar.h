@@ -75,6 +75,14 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float ProjectileOffset = 20;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	int AttackSlots = 1;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	int MaxAttackSlots = 1;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	bool IsAttacking;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		int32 TestID;
 

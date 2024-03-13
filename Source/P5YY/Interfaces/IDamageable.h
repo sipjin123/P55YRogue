@@ -25,4 +25,29 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
 	void OnTakeDamage(float damage);
+	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
+	void OnDeathTrigger();
+	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
+	void ReturnAttackSlot(int Slots);
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
+	void StoreAttackSlot(int Slots, AActor* TargetActor);
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
+	void ReserveAttackSlot(int Slots, bool &Success);
+	void ReserveAttackSlot_Implementation(int Slots, bool &Success);
+	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
+	void GetMaxAttackSlot(int& Slots);
+	void GetMaxAttackSlot_Implementation(int& Slots);
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
+	void GetCurrentAttackSlot(int& Slots);
+	void GetCurrentAttackSlot_Implementation(int& Slots);
+	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
+	void AttackStart(int AttackSlotsNeeded, AActor *TargetActor, bool& Success);
+	void AttackStart_Implementation(int AttackSlotsNeeded, AActor *TargetActor, bool& Success);
+	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
+	void AttackEnd(AActor *TargetActor);
 };

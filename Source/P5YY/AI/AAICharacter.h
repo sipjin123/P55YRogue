@@ -9,6 +9,7 @@
 #include "P5YY\Public\BaseAttributeSet.h"
 #include "AAICharacter.generated.h"
 
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FAttackEnded);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnEquipWeapon);
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FOnUnequipWeapon);
 
@@ -43,6 +44,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="GAS", meta = (AllowPrivateAccess="true"))
 	const class UBaseAttributeSet* BaseAttributeSet;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	int AttackSlots = 1;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	int MaxAttackSlots = 1;
+	UPROPERTY(BlueprintCallable, BlueprintAssignable)
+	FAttackEnded AttackEnded;
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	bool IsAttacking;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 	float MeleeRadius;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
