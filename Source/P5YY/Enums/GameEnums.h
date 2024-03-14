@@ -7,7 +7,6 @@
 /**
  * 
  */
-
 UENUM(BlueprintType)
 enum class EFactionType : uint8 {
 	Neutral = 0 UMETA(DisplayName = "None"),
@@ -43,6 +42,7 @@ enum class EEnemyType : uint8 {
 	Mage1 = 3 UMETA(DisplayName = "Magus"),
 	Healer1 = 4  UMETA(DisplayName = "Willow")
 };
+
 class P5YY_API GameEnums
 {
 public:
