@@ -6,6 +6,7 @@
 #include "GameFramework/Actor.h"
 #include "ABuilding.generated.h"
 
+
 UCLASS()
 class P5YY_API AABuilding : public AActor
 {

@@ -15,6 +15,12 @@ public:
 	// Sets default values for this actor's properties
 	AAHomeBase();
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Display")
+	class UStaticMeshComponent* StaticMeshSource;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class USceneComponent* SceneComponent;
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
