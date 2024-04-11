@@ -10,6 +10,9 @@ enum class EBuildingType : uint8 {
 	WindGenerator = 5 UMETA(DisplayName = "Mining Hub"),
 	SolarGenerator = 6 UMETA(DisplayName = "Solar Generator"),
 	ResourceBay = 7 UMETA(DisplayName = "Reource Bay"),
+	Workshop = 8 UMETA(DisplayName = "Workshop"),
+	Kitchen = 9 UMETA(DisplayName = "Kitchen"),
+	Techhub = 10 UMETA(DisplayName = "Tech hub"),
 };
 
 struct BuildingType
