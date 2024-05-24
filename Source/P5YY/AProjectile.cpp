@@ -5,8 +5,9 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
 #include "Engine/StaticMesh.h"
+#include "Kismet/KismetMathLibrary.h"
 
-// Sets default values
+ // Sets default values
 AAProjectile::AAProjectile()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
@@ -30,14 +31,15 @@ AAProjectile::AAProjectile()
     {
         // Use this component to drive this projectile's movement.
         ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComponent"));
-        ProjectileMovementComponent->SetUpdatedComponent(RootComponent);
-        ProjectileMovementComponent->InitialSpeed = 1500.0f;
-        ProjectileMovementComponent->MaxSpeed = 1500.0f;
-        ProjectileMovementComponent->bRotationFollowsVelocity = true;
-        ProjectileMovementComponent->bShouldBounce = true;
-        ProjectileMovementComponent->Bounciness = 0.3f;
-        ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
-    }
+    } 
+    
+    ProjectileMovementComponent->SetUpdatedComponent(RootComponent);
+    ProjectileMovementComponent->InitialSpeed = 1500.0f;
+    ProjectileMovementComponent->MaxSpeed = 1500.0f;
+    ProjectileMovementComponent->bRotationFollowsVelocity = true;
+    ProjectileMovementComponent->bShouldBounce = true;
+    ProjectileMovementComponent->Bounciness = 0.3f;
+    ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
 }
 
 // Called when the game starts or when spawned
@@ -52,9 +54,20 @@ void AAProjectile::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void AAProjectile::InitializeProjectile(FVector newDirection, FVector spawnPoint, FRotator startRotator) {
+void AAProjectile::InitializeProjectile(FVector NewDirection, FVector SpawnPoint, FRotator StartRotator)
+{
+    SetActorLocation(SpawnPoint);
+    SetActorRotation(StartRotator);
+    ProjectileMovementComponent->Velocity = NewDirection * ProjectileMovementComponent->InitialSpeed;
+}
 
-    SetActorLocation(spawnPoint);
-    SetActorRotation(startRotator);
-    ProjectileMovementComponent->Velocity = newDirection * ProjectileMovementComponent->InitialSpeed;
+void AAProjectile::InitializeProjectileTowards(FVector NewTargetLocation, FVector NewDirection, FVector SpawnPoint, FRotator StartRotator)
+{
+	SetActorLocation(SpawnPoint);
+
+	FVector Forward = SpawnPoint - GetActorLocation();
+	FRotator Rot = UKismetMathLibrary::MakeRotFromXZ(Forward, FVector::UpVector);
+	SetActorRotation(Rot);
+	//FVector Direction = UKismetMathLibrary::GetForwardVector(GetActorRotation());
+    ProjectileMovementComponent->Velocity = NewDirection * ProjectileMovementComponent->InitialSpeed;
 }

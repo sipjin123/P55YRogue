@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "P5YY/Enums/GameEnums.h"
 #include "UObject/Interface.h"
 #include "IDamageable.generated.h"
 

@@ -51,8 +51,9 @@ public:
 	// Test from Sourcetree part 2
 public:
 	UFUNCTION(BlueprintCallable, Category = "Properties")
-	void InitializeProjectile(FVector newDirection, FVector spawnPoint, FRotator startRotator);
-
+	void InitializeProjectile(FVector NewDirection, FVector SpawnPoint, FRotator StartRotator);
+	UFUNCTION(BlueprintCallable, Category = "Properties")
+	void InitializeProjectileTowards(FVector NewTargetLocation, FVector NewDirection, FVector SpawnPoint, FRotator StartRotator);
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;

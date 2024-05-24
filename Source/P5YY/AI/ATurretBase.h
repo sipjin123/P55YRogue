@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "P5YY/Enums/GameEnums.h"
 #include "ATurretBase.generated.h"
 
 UCLASS()
@@ -19,6 +20,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
 	float LookLerpSpeedYaw = 100.f;
+		
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	EFactionType FactionType;
 		
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
 	float LookLerpSpeedPitch = 100.f;
