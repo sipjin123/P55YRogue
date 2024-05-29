@@ -10,7 +10,8 @@ enum class EMinerState : uint8 {
 	StoringResource = 5,
 	Charging = 6,
 	Dead = 7,
-	Processing = 8
+	Processing = 8,
+	DeployingPawns = 9,
 };
 
 struct MinerState

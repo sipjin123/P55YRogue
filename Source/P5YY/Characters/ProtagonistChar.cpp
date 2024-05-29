@@ -24,6 +24,7 @@
 #include "BaseAttributeSet.h"
 #include "Components/SphereComponent.h"
 #include "Net/UnrealNetwork.h"
+#include "P5YY/Enums/PlayerActionState.h"
 
 DEFINE_LOG_CATEGORY(CharacterLog);
 
@@ -95,6 +96,12 @@ void AProtagonistChar::BeginPlay()
         AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(UBaseAttributeSet::GetManaAttribute()).AddUObject(this, &AProtagonistChar::OnManaUpdated);
         AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(UBaseAttributeSet::GetHealthAttribute()).AddUObject(this, &AProtagonistChar::OnHealthUpdated);
 	}
+
+	if (IsLocallyControlled() && DialogueClass)
+	{
+		DialogueBase = CreateWidget<UDialogueWidgetBase>(UGameplayStatics::GetPlayerController(GetWorld(), 0), DialogueClass);
+		//DialogueBase->AddToViewport();
+	}
 }
 
 void AProtagonistChar::EndPlay(const EEndPlayReason::Type EndPlayReason)
@@ -110,6 +117,19 @@ void AProtagonistChar::EndPlay(const EEndPlayReason::Type EndPlayReason)
 void AProtagonistChar::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+	PlayerActionTick(DeltaTime);
+}
+
+void AProtagonistChar::PlayerActionTick(float DeltaTime)
+{
+	switch (PlayerActionState)
+	{
+		case EPlayerActionState::Customize:
+		
+			
+			UE_LOG(LogTemp, Warning, TEXT("TICKING HERE"));
+		break;
+	}
 }
 
 // Input
@@ -136,19 +156,30 @@ void AProtagonistChar::Move(const FInputActionValue& Value)
 	FVector2D MovementVector = Value.Get<FVector2D>();
 	if (Controller != nullptr)
 	{
-		// find out which way is forward
-		const FRotator Rotation = Controller->GetControlRotation();
-		const FRotator YawRotation(0, Rotation.Yaw, 0);
+		if (!IsTopDown)
+		{
+			// find out which way is forward
+			const FRotator Rotation = Controller->GetControlRotation();
+			const FRotator YawRotation(0, Rotation.Yaw, 0);
 
-		// get forward vector
-		const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
+			// get forward vector
+			const FVector ForwardDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::X);
 
-		// get right vector 
-		const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
+			// get right vector 
+			const FVector RightDirection = FRotationMatrix(YawRotation).GetUnitAxis(EAxis::Y);
 
-		// add movement 
-		AddMovementInput(ForwardDirection, MovementVector.Y);
-		AddMovementInput(RightDirection, MovementVector.X);
+			// add movement 
+			AddMovementInput(ForwardDirection, MovementVector.Y);
+			AddMovementInput(RightDirection, MovementVector.X);
+		}
+		else
+		{
+			if (CameraTopViewActor)
+			{
+				AddMovementInput(CameraTopViewActor->GetActorForwardVector(), MovementVector.Y);
+				AddMovementInput(CameraTopViewActor->GetActorRightVector(), MovementVector.X);
+			}	
+		}
 	}
 }
 
@@ -212,6 +243,21 @@ void AProtagonistChar::UpdateEquipmentHandling() {
 	}
 	else {
 		EquipmentHandling->InitializeComponent();
+	}
+}
+
+void AProtagonistChar::ToggleDialogueScene(bool IsEnabled)
+{
+	if (IsLocallyControlled() && DialogueBase)
+	{
+		if (IsEnabled)
+		{
+			DialogueBase->AddToViewport();
+		}
+		else
+		{
+			DialogueBase->RemoveFromParent();
+		}
 	}
 }
 

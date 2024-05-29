@@ -12,6 +12,8 @@
 #include "P5YY/AProjectile.h"
 #include "P5YY/ACEquipmentHandling.h"
 #include "P5YY/Enums/GameEnums.h"
+#include "P5YY/Enums/PlayerActionState.h"
+#include "P5YY/UIWidgets/DialogueWidgetBase.h"
 #include "P5YY/UIWidgets/PlayerStatWidget.h"
 
 #include "ProtagonistChar.generated.h"
@@ -82,9 +84,16 @@ public:
 		int AttackSlots = 1;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 		int MaxAttackSlots = 1;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UUserWidget> DialogueClass;
+	class UDialogueWidgetBase* DialogueBase;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
-	bool IsAttacking;
+		bool IsAttacking;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Navigation")
+		bool IsTopDown = false;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		int32 TestID;
@@ -94,6 +103,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		AActor* TargetMobilityNode;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		AActor* CameraTopViewActor;
 	
 	UPROPERTY(Replicated, EditAnywhere, BlueprintReadWrite)
 		FVector TargetMobilityLocation;
@@ -106,7 +118,9 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Group1")
 		void UpdateEquipmentHandling();
-	
+
+	UFUNCTION(BlueprintCallable)
+		void ToggleDialogueScene(bool IsEnabled);
 protected:
 	/** Called for movement input */
 	void Move(const FInputActionValue& Value);
@@ -150,6 +164,7 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	virtual void PlayerActionTick(float DeltaTime);
 
 	// UPROPERTY(BlueprintReadOnly, Category = "Mana", ReplicatedUsing=OnRep_Mana)
 	// GAMEPLAYATTRIBUTE_PROPERTY_GETTER(URPGAttributeSet, Mana)
@@ -158,6 +173,9 @@ public:
 	UPROPERTY(BlueprintAssignable, Category = "Attribute callbacks")
 	FAttributeChange OnManaChange;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
+	EPlayerActionState PlayerActionState;
+	
 	// The callback to be registered within AbilitySystem.
 	void OnManaUpdated(const FOnAttributeChangeData& Data) const;
 	
