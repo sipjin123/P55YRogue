@@ -209,15 +209,18 @@ void AProtagonistChar::Server_SpawnProjectile_Implementation(FVector newSpawnPt)
 void AProtagonistChar::SpawnProjectileAt(FVector newSpawnPt) {
 	ProjectileSpawnPt = newSpawnPt;
 	if (CustomProjectile) {
-		// Spawns the projectile new instance
-		AAProjectile* NewProjectile = GetWorld()->SpawnActor<AAProjectile>(CustomProjectile);
-		NewProjectile->SetOwner(this);
-
 		// Initialize new projectile parameters
 		FVector newDir = GetActorForwardVector() * ProjectileOffset;
 		FRotator newRot = GetActorRotation();
-		FVector newLoc = ProjectileSpawnPt;
-		NewProjectile->InitializeProjectile(newDir, newLoc, newRot);
+		FVector newLoc = ProjectileSpawnPt + newDir;
+		
+		// Spawns the projectile new instance
+		AAProjectile* NewProjectile = GetWorld()->SpawnActor<AAProjectile>(CustomProjectile, newLoc, newRot);
+		NewProjectile->SetOwner(this);
+
+		// No need unless an override is required
+		//NewProjectile->InitializeProjectile(newDir, newLoc, newRot);
+		//DrawDebugSphere(GetWorld(), newLoc, 50, 16, FColor::Red, false, 5);
 
 		// Assign target node to allow player to use mobility on node
 		TargetMobilityNode = NewProjectile;

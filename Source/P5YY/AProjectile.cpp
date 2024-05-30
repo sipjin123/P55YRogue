@@ -30,16 +30,15 @@ AAProjectile::AAProjectile()
     if (!ProjectileMovementComponent)
     {
         // Use this component to drive this projectile's movement.
-        ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComponent"));
+    	ProjectileMovementComponent = CreateDefaultSubobject<UProjectileMovementComponent>(TEXT("ProjectileMovementComponent"));
+    	ProjectileMovementComponent->SetUpdatedComponent(RootComponent);
+    	ProjectileMovementComponent->InitialSpeed = 1500.0f;
+    	ProjectileMovementComponent->MaxSpeed = 1500.0f;
+    	ProjectileMovementComponent->bRotationFollowsVelocity = true;
+    	ProjectileMovementComponent->bShouldBounce = true;
+    	ProjectileMovementComponent->Bounciness = 0.3f;
+    	ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
     } 
-    
-    ProjectileMovementComponent->SetUpdatedComponent(RootComponent);
-    ProjectileMovementComponent->InitialSpeed = 1500.0f;
-    ProjectileMovementComponent->MaxSpeed = 1500.0f;
-    ProjectileMovementComponent->bRotationFollowsVelocity = true;
-    ProjectileMovementComponent->bShouldBounce = true;
-    ProjectileMovementComponent->Bounciness = 0.3f;
-    ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
 }
 
 // Called when the game starts or when spawned

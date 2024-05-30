@@ -21,7 +21,7 @@ public:
 		class USphereComponent* CollisionSphere;
 
 	// Projectile movement component.
-	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Movement")
+	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, meta = (AllowPrivateAccess), Category = "Movement") // Add this to ensure editor visibility in details panel
 		class UProjectileMovementComponent* ProjectileMovementComponent;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Display")

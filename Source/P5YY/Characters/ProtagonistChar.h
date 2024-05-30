@@ -76,7 +76,7 @@ public:
 		FVector ProjectileSpawnPt;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-		float ProjectileOffset = 20;
+		float ProjectileOffset = 100;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 		EFactionType FactionType;
