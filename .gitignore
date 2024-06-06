@@ -5,6 +5,7 @@ Content/Characters/
 Content/LevelPrototyping/
 Content/ThirdPerson/
 
+Build
 Binaries/
 Platforms/
 Intermediate/
@@ -19,6 +20,16 @@ Source/SKMannequin_A_Pose/
 Source/SK_Mannequin_T_Pose_README.txt
 Source/SK_Mannequin_A_Pose_README.txt
 Source/UE4_MocapOnline_Tech_Notes.txt
+
+# JetBrains Rider Generated Files #
+# Cache Directory
+.idea
+
+# Solution and Project Files
+*.sln
+*.csproj
+*.sln.DotSettings
+*.sln.DotSettings.user
 
 # Visual Studio solutions
 /*.sln
