@@ -33,7 +33,7 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
 		float Damage;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats", meta = (ExposeOnSpawn="true"))
 		float Velocity;
 		
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
@@ -50,6 +50,8 @@ public:
 	// Test for SmartSvn
 	// Test from Sourcetree part 2
 public:
+	UFUNCTION(BlueprintCallable, Category = "Properties")
+	void InitializeProjectileVelocity(float NewSpeed, FVector NewVelocity, FVector SpawnPoint, FRotator StartRotator);
 	UFUNCTION(BlueprintCallable, Category = "Properties")
 	void InitializeProjectile(FVector NewDirection, FVector SpawnPoint, FRotator StartRotator);
 	UFUNCTION(BlueprintCallable, Category = "Properties")

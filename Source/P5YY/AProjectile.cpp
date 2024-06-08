@@ -38,7 +38,7 @@ AAProjectile::AAProjectile()
     	ProjectileMovementComponent->bShouldBounce = true;
     	ProjectileMovementComponent->Bounciness = 0.3f;
     	ProjectileMovementComponent->ProjectileGravityScale = 0.0f;
-    } 
+    }
 }
 
 // Called when the game starts or when spawned
@@ -51,6 +51,14 @@ void AAProjectile::BeginPlay()
 void AAProjectile::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+}
+
+void AAProjectile::InitializeProjectileVelocity(float NewSpeed, FVector NewVelocity, FVector SpawnPoint, FRotator StartRotator)
+{
+	SetActorLocation(SpawnPoint);
+	SetActorRotation(StartRotator);
+	//ProjectileMovementComponent->Velocity = NewVelocity;
+	ProjectileMovementComponent->Velocity = NewVelocity * NewSpeed;
 }
 
 void AAProjectile::InitializeProjectile(FVector NewDirection, FVector SpawnPoint, FRotator StartRotator)
