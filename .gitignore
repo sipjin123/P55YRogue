@@ -1,6 +1,9 @@
 Content/__ExternalObjects__/
 Content/__ExternalActors__/
 Content/Imports/
+Content/ImportsModified/CharacterImports/
+Content/ImportsModified/EnvironmentImports/
+Content/ImportsModified/PropsImports/
 Content/Characters/
 Content/LevelPrototyping/
 Content/ThirdPerson/
