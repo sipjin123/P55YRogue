@@ -2,7 +2,7 @@
 
 #include "P5YYCharacter.h"
 
-#include "ACMobilityHandling.h"
+#include "ActorComponents/ACMobilityHandling.h"
 #include "Camera/CameraComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/InputComponent.h"
