@@ -3,6 +3,7 @@
 
 #include "ACMobilityHandling.h"
 #include "Components/SphereComponent.h"
+#include "P5YY/Characters/ProtagonistChar.h"
 
 // Sets default values for this component's properties
 UACMobilityHandling::UACMobilityHandling()

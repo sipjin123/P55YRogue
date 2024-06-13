@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Characters/ProtagonistChar.h"
+#include "P5YY/Characters/ProtagonistChar.h"
 #include "Components/ActorComponent.h"
 #include "ACMobilityHandling.generated.h"
 

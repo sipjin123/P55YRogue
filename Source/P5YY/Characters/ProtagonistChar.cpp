@@ -17,8 +17,8 @@
 #include "Kismet/GameplayStatics.h"
 #include "Kismet/KismetMathLibrary.h"
 
-#include "P5YY/ACEquipmentHandling.h"
-#include "P5YY/ACMobilityHandling.h"
+#include "P5YY/ActorComponents/ACEquipmentHandling.h"
+#include "P5YY/ActorComponents/ACMobilityHandling.h"
 #include "P5YY/UIWidgets/PlayerStatWidget.h"
 #include "AbilitySystemComponent.h"
 #include "BaseAttributeSet.h"

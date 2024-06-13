@@ -10,7 +10,7 @@
 #include "BaseAttributeSet.h"
 
 #include "P5YY/AProjectile.h"
-#include "P5YY/ACEquipmentHandling.h"
+#include "P5YY/ActorComponents/ACEquipmentHandling.h"
 #include "P5YY/Enums/GameEnums.h"
 #include "P5YY/Enums/PlayerActionState.h"
 #include "P5YY/UIWidgets/DialogueWidgetBase.h"
