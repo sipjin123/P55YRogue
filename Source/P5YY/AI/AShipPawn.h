@@ -23,7 +23,7 @@ public:
 	class USceneComponent* SceneComponent;
 
 	// Movement component.
-	UPROPERTY(EditAnywhere, Category = "Movement")
+	UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Movement")
 	class UFloatingPawnMovement* MovementComponent;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Display")
