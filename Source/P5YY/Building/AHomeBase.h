@@ -15,9 +15,6 @@ public:
 	// Sets default values for this actor's properties
 	AAHomeBase();
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Display")
-	class UStaticMeshComponent* StaticMeshSource;
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class USceneComponent* SceneComponent;
 

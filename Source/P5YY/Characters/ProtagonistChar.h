@@ -90,6 +90,9 @@ public:
 	class UDialogueWidgetBase* DialogueBase;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+		bool CanLookUp;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 		bool IsAttacking;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Navigation")
