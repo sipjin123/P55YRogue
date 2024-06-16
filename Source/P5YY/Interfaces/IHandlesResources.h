@@ -4,30 +4,27 @@
 
 #include "CoreMinimal.h"
 #include "UObject/Interface.h"
-#include "IMineable.generated.h"
+#include "P5YY/ResourceManagement/AResourceBase.h"
+#include "IHandlesResources.generated.h"
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE(FHasDepleted);
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI)
-class UIMineable : public UInterface
+class UIHandlesResources : public UInterface
 {
 	GENERATED_BODY()
 };
 
-class P5YY_API IIMineable
+class P5YY_API IIHandlesResources
 {
 	GENERATED_BODY()
 	
 public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category="Harvesting")
-	bool IsMineable();
-	
+	float GetCargoCapacity();
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category="Harvesting")
-	float GetMaxResource();
+	float GetResourcePerHit();
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category="Harvesting")
-	float GetRemainingResource();
+	AAResourceBase* GetTargetResource();
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category="Harvesting")
-	void DeductResource(float Value);
-	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category="Harvesting")
-	void DepleteResource();
+	void SetTargetResource(AAResourceBase* NewResource);
 };
