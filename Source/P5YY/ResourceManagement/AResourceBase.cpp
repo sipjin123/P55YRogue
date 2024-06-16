@@ -2,6 +2,7 @@
 
 
 #include "AResourceBase.h"
+#include "P5YY/Structs/ResourceActiveData.h"
 
 
 // Sets default values
@@ -21,8 +22,8 @@ AAResourceBase::AAResourceBase()
 // Called when the game starts or when spawned
 void AAResourceBase::BeginPlay()
 {
+	ResourceData = NewObject<UResourceActiveData>();
 	Super::BeginPlay();
-	
 }
 
 // Called every frame

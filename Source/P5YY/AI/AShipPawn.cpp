@@ -34,8 +34,8 @@ AAShipPawn::AAShipPawn()
 // Called when the game starts or when spawned
 void AAShipPawn::BeginPlay()
 {
+	VehicleData = NewObject<UMiningVehicleData>();
 	Super::BeginPlay();
-	
 }
 
 // Called every frame

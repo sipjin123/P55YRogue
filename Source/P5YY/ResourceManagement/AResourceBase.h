@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "P5YY/Structs/ResourceActiveData.h"
 #include "P5YY/Interfaces/IMineable.h"
 #include "AResourceBase.generated.h"
 
@@ -21,7 +22,10 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class USceneComponent* SceneComponent;
-
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	UResourceActiveData* ResourceData;
+	
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -29,4 +33,7 @@ protected:
 public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+	
+	UPROPERTY(BlueprintCallable, BlueprintAssignable)
+	FHasDepleted HasDepleted;
 };

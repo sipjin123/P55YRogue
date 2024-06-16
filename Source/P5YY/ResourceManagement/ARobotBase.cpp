@@ -14,8 +14,8 @@ AARobotBase::AARobotBase()
 // Called when the game starts or when spawned
 void AARobotBase::BeginPlay()
 {
+	MinerActiveData = NewObject<UMinerActiveData>();
 	Super::BeginPlay();
-	
 }
 
 // Called every frame
