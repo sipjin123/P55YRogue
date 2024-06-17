@@ -4,7 +4,6 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
-#include "P5YY/AI/AShipPawn.h"
 #include "P5YY/ResourceManagement/AResourceBase.h"
 #include "P5YY/Enums/GameEnums.h"
 #include "P5YY/Structs/MinerActiveData.h"
@@ -31,7 +30,7 @@ public:
 	EFactionType FactionType;
 		
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	AAShipPawn* MiningShipRef;
+	AActor* MiningShipActor;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
 	UMinerActiveData* MinerActiveData;

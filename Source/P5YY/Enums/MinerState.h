@@ -12,6 +12,13 @@ enum class EMinerState : uint8 {
 	Dead = 7,
 	Processing = 8,
 	DeployingPawns = 9,
+	CallbackPawns = 10,
+	MoveToExitNode = 11,
+	ExitParking = 12,
+	MoveToParking = 13,
+	ReturnToSpawner = 14,
+	BoardMiningVehicle = 15,
+	InitializeBoardingSequence = 16
 };
 
 struct MinerState

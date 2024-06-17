@@ -8,6 +8,7 @@
 #include "AShipPawn.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FHasReachedMaxCargo);
+DECLARE_DYNAMIC_MULTICAST_DELEGATE(FMiningAreaDepleted);
 
 UCLASS()
 class P5YY_API AAShipPawn : public APawn
@@ -35,6 +36,11 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
 	UMiningVehicleData* VehicleData;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	TArray<AActor*> SpawnedMinerActors;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Data")
+	TArray<AActor*> TargetResourceActors;
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -48,4 +54,7 @@ public:
 
 	UPROPERTY(BlueprintCallable, BlueprintAssignable)
 	FHasReachedMaxCargo HasReachedMaxCargo;
+	
+	UPROPERTY(BlueprintCallable, BlueprintAssignable)
+	FMiningAreaDepleted MiningAreaDepleted;
 };

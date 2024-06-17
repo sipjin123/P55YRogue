@@ -25,7 +25,9 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	float  MovementSpeed;
-
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float  MineRadius;
 	/*
 	UMiningVehicleData()
 	{
