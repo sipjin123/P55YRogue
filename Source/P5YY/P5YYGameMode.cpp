@@ -1,7 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 #include "P5YYGameMode.h"
-#include "P5YYCharacter.h"
+//#include "P5YYCharacter.h"
 #include "UObject/ConstructorHelpers.h"
 #include "DrawDebugHelpers.h"
 
