@@ -13,6 +13,9 @@ public:
 	ATurretBase();
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	class USceneComponent* SceneComponent;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	class UStaticMeshComponent* StatMeshSource;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
