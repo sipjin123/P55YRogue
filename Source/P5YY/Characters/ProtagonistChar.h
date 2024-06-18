@@ -9,7 +9,7 @@
 #include "AbilitySystemInterface.h"
 #include "BaseAttributeSet.h"
 
-#include "P5YY/AProjectile.h"
+#include "P5YY/Combat/AProjectile.h"
 #include "P5YY/ActorComponents/ACEquipmentHandling.h"
 #include "P5YY/Enums/GameEnums.h"
 #include "P5YY/Enums/PlayerActionState.h"
