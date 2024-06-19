@@ -24,6 +24,8 @@
 #include "BaseAttributeSet.h"
 #include "Components/SphereComponent.h"
 #include "Net/UnrealNetwork.h"
+#include "P5YY/ActorComponents/ACInventoryHandling.h"
+#include "P5YY/ActorComponents/ACRobotUpgradeHandling.h"
 #include "P5YY/Enums/PlayerActionState.h"
 #include "P5YY/Interfaces/IInteractable.h"
 
@@ -73,6 +75,10 @@ void AProtagonistChar::BeginPlay()
 	if (GetOwner())
 	{
 		MobilityHandling = GetOwner()->FindComponentByClass<UACMobilityHandling>();
+		RobotUpgradeHandling = GetOwner()->FindComponentByClass<UACRobotUpgradeHandling>();
+		InventoryHandling = GetOwner()->FindComponentByClass<UACInventoryHandling>();
+		EquipmentHandling = GetOwner()->FindComponentByClass<UACEquipmentHandling>();
+		UE_LOG(CharacterLog, Warning, TEXT("Components Finished setting up"));
 	}
 	
 	//Add Input Mapping Context

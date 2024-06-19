@@ -66,6 +66,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 		class UACMobilityHandling* MobilityHandling;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+		class UACRobotUpgradeHandling* RobotUpgradeHandling;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+		class UACInventoryHandling* InventoryHandling;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 		TSubclassOf<UPlayerStatWidget> PlayerHUDClass;
 
