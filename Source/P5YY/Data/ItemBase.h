@@ -11,6 +11,13 @@ public:
 	int32 Id;
 	UPROPERTY(VisibleAnywhere, Category="Item Data", meta=(UIMin=1, UIMax=100))
 	int32 Quantity;
+
+	void ResetFlags();
+	bool IsPickup;
+	bool IsCopy;
+	
+	UPROPERTY(VisibleAnywhere, Category="Item Data")
+	UActorComponent* OwningInventory;
 	
 	UPROPERTY(EditAnywhere, Category="Item Data")
 	EItemRarity ItemRarity;

@@ -1,7 +1,13 @@
 ﻿#include "ItemBase.h"
 
-UItemBase::UItemBase()
+UItemBase::UItemBase() : IsCopy(false), IsPickup(false)
 {
+}
+
+void UItemBase::ResetFlags()
+{
+	IsCopy = false;
+	IsPickup = false;
 }
 
 UItemBase* UItemBase::CreateItemCopy() const
