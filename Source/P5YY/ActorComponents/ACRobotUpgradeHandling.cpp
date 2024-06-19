@@ -1,10 +1,10 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "RobotUpgradeHandling.h"
+#include "ACRobotUpgradeHandling.h"
 
 // Sets default values for this component's properties
-URobotUpgradeHandling::URobotUpgradeHandling()
+UACRobotUpgradeHandling::UACRobotUpgradeHandling()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
@@ -15,7 +15,7 @@ URobotUpgradeHandling::URobotUpgradeHandling()
 
 
 // Called when the game starts
-void URobotUpgradeHandling::BeginPlay()
+void UACRobotUpgradeHandling::BeginPlay()
 {
 	Super::BeginPlay();
 
@@ -25,7 +25,7 @@ void URobotUpgradeHandling::BeginPlay()
 
 
 // Called every frame
-void URobotUpgradeHandling::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
+void UACRobotUpgradeHandling::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
 {
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 

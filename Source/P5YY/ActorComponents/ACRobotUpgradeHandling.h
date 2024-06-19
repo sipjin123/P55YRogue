@@ -4,17 +4,17 @@
 
 #include "CoreMinimal.h"
 #include "Components/ActorComponent.h"
-#include "RobotUpgradeHandling.generated.h"
+#include "ACRobotUpgradeHandling.generated.h"
 
 
 UCLASS(Blueprintable, BlueprintType, ClassGroup = (Custom), meta = (BlueprintSpawnableComponent))
-class P5YY_API URobotUpgradeHandling : public UActorComponent
+class P5YY_API UACRobotUpgradeHandling : public UActorComponent
 {
 	GENERATED_BODY()
 
 public:	
 	// Sets default values for this component's properties
-	URobotUpgradeHandling();
+	UACRobotUpgradeHandling();
 
 protected:
 	// Called when the game starts
