@@ -76,6 +76,9 @@ public:
 		FVector ProjectileSpawnPt;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+		float InteractionDistancce = 500;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		float ProjectileOffset = 100;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
@@ -100,6 +103,12 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		int32 TestID;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interaction")
+		AActor* InteractedActor;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Interaction")
+		AActor* PreviousInteractedActor;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 		AActor* TargetActor;
@@ -169,6 +178,9 @@ public:
 	virtual void Tick(float DeltaTime) override;
 	virtual void PlayerActionTick(float DeltaTime);
 
+	UFUNCTION(BlueprintCallable, Category = "Interaction")
+	void TraceInteraction();
+	
 	// UPROPERTY(BlueprintReadOnly, Category = "Mana", ReplicatedUsing=OnRep_Mana)
 	// GAMEPLAYATTRIBUTE_PROPERTY_GETTER(URPGAttributeSet, Mana)
 

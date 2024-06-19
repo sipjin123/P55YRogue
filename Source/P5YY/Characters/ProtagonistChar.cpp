@@ -25,6 +25,7 @@
 #include "Components/SphereComponent.h"
 #include "Net/UnrealNetwork.h"
 #include "P5YY/Enums/PlayerActionState.h"
+#include "P5YY/Interfaces/IInteractable.h"
 
 DEFINE_LOG_CATEGORY(CharacterLog);
 
@@ -129,6 +130,70 @@ void AProtagonistChar::PlayerActionTick(float DeltaTime)
 			
 			UE_LOG(LogTemp, Warning, TEXT("TICKING HERE"));
 		break;
+	}
+}
+
+void AProtagonistChar::TraceInteraction()
+{
+	bool UseLine = false;
+	// Using :: BaseEyeHeight
+	
+	const float TraceDuration = .08f;
+	const float TraceDist = 10000.f;
+	FVector TraceStart { GetPawnViewLocation() + (GetViewRotation().Vector() * 50.f) };
+	FVector TraceEnd { TraceStart + (GetViewRotation().Vector() * TraceDist) };
+
+	if (UseLine)
+	{
+		FCollisionQueryParams QueryParams;
+		QueryParams.AddIgnoredActor(this);
+		FHitResult TraceHit;
+
+		DrawDebugLine(GetWorld(), TraceStart, TraceEnd, FColor::Red, false , TraceDuration, 0, 1.0f);
+		if (GetWorld()->LineTraceSingleByChannel(TraceHit,TraceStart,TraceEnd,ECC_Visibility,QueryParams))
+		{
+			if (TraceHit.GetActor()->GetClass()->ImplementsInterface(UIInteractable::StaticClass()))
+			{
+				const float Distance = (TraceStart - TraceHit.ImpactPoint).Size();
+				if (TraceHit.GetActor() != InteractedActor)
+				{
+					PreviousInteractedActor = InteractedActor;
+					InteractedActor = TraceHit.GetActor();
+					if (Distance < InteractionDistancce)
+					{
+						FString ObjName = TraceHit.GetActor()->GetName();
+						UE_LOG(LogTemp, Warning, TEXT("Looking at Obj:[%s]"), *ObjName);
+					}
+				}
+			}
+		}
+	}
+	else
+	{
+		TArray<AActor*> ActorsToIgnore;
+		ActorsToIgnore.Add(GetOwner());
+		FHitResult TraceHit;
+		const float TraceRadius = 5.f;
+		bool Hit = UKismetSystemLibrary::SphereTraceSingle(GetWorld(), TraceStart,TraceEnd, TraceRadius,
+			ETraceTypeQuery::TraceTypeQuery1, false, ActorsToIgnore, EDrawDebugTrace::ForDuration,
+			TraceHit, true, FLinearColor::Red, FLinearColor::Green, TraceDuration);
+		if (Hit)
+		{
+			if (TraceHit.GetActor()->GetClass()->ImplementsInterface(UIInteractable::StaticClass()))
+			{
+				const float Distance = (TraceStart - TraceHit.ImpactPoint).Size();
+				if (TraceHit.GetActor() != InteractedActor)
+				{
+					PreviousInteractedActor = InteractedActor;
+					InteractedActor = TraceHit.GetActor();
+					if (Distance < InteractionDistancce)
+					{
+						FString ObjName = TraceHit.GetActor()->GetName();
+						UE_LOG(LogTemp, Warning, TEXT("Looking at Obj:[%s]"), *ObjName);
+					}
+				}
+			}
+		}
 	}
 }
 
