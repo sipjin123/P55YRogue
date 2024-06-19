@@ -36,7 +36,19 @@ void APickupItem::ProcessInteractPure()
 {
 	IIInteractable::ProcessInteractPure();
 	UE_LOG(LogTemp, Warning, TEXT("Item must be interacted C++"));
-
 	K2_DestroyActor();
 }
 
+void APickupItem::OnInteractByActor_Implementation(const AActor* ActorRef)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Item must be interacted BP by:{%s}"), *ActorRef->GetName());
+	IIInteractable::OnInteractByActor_Implementation(ActorRef);
+	ProcessInteractByActorPure(ActorRef);
+}
+
+void APickupItem::ProcessInteractByActorPure(const AActor* ActorRef)
+{
+	UE_LOG(LogTemp, Warning, TEXT("Item must be interacted C++by:{%s}"), *ActorRef->GetName());
+	IIInteractable::ProcessInteractByActorPure(ActorRef);
+	K2_DestroyActor();
+}

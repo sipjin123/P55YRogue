@@ -7,3 +7,7 @@
 void IIInteractable::ProcessInteractPure()
 {
 }
+
+void IIInteractable::ProcessInteractByActorPure(const AActor* ActorRef)
+{
+}

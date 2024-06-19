@@ -21,7 +21,13 @@ class P5YY_API IIInteractable
 public:
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
 	void OnInteract();
+	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Interaction")
+	void OnInteractByActor(const AActor* ActorRef);
 
 	UFUNCTION()
 	virtual void ProcessInteractPure();
+	
+	UFUNCTION()
+	virtual void ProcessInteractByActorPure(const AActor* ActorRef);
 };

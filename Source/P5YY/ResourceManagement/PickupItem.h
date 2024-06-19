@@ -25,6 +25,7 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	virtual void OnInteract_Implementation() override;
-	
 	virtual void ProcessInteractPure() override;
+	virtual void OnInteractByActor_Implementation(const AActor* ActorRef) override;
+	virtual void ProcessInteractByActorPure(const AActor* ActorRef) override;
 };
