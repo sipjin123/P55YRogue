@@ -47,6 +47,10 @@ public:
 	
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category="Combat")
 	AActor* GetTargetActor();
+	
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category="Combat")
+	USkeletalMeshComponent* GetSkeletalMesh();
+	
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category="Combat")
 	void SetTargetActor(AActor* NewTargetActor);
 	
