@@ -45,6 +45,7 @@ AAProjectile::AAProjectile()
 void AAProjectile::BeginPlay()
 {
 	Super::BeginPlay();
+	SpawnLocation = GetActorLocation();
 }
 
 // Called every frame
@@ -53,7 +54,17 @@ void AAProjectile::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 }
 
-void AAProjectile::InitializeProjectileVelocity(float NewSpeed, FVector NewVelocity, FVector SpawnPoint, FRotator StartRotator)
+ void AAProjectile::SetStartLocation(FVector NewLocation)
+ {
+	SpawnLocation = NewLocation;
+ }
+
+ void AAProjectile::SetTargetLocation(FVector NewLocation)
+ {
+	TargetLocation = NewLocation;
+ }
+
+ void AAProjectile::InitializeProjectileVelocity(float NewSpeed, FVector NewVelocity, FVector SpawnPoint, FRotator StartRotator)
 {
 	SetActorLocation(SpawnPoint);
 	SetActorRotation(StartRotator);

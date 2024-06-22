@@ -47,6 +47,12 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
 		bool ExplodesOnCollision;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
+		FVector SpawnLocation;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
+		FVector TargetLocation;
+	
 	// Test for SmartSvn
 	// Test from Sourcetree part 2
 public:
@@ -63,7 +69,11 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
-
+	UFUNCTION(BlueprintCallable, Category = "Properties")
+	void SetStartLocation(FVector NewLocation);
+	UFUNCTION(BlueprintCallable, Category = "Properties")
+	void SetTargetLocation(FVector NewLocation);
+	
 	// Allows calling teleport event across c++ and BP
 	UPROPERTY(BlueprintCallable, BlueprintAssignable)
 	FReturnedToOwner HasReturnedToOwner; // Can be called via c++ using Broadcast
