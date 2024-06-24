@@ -64,6 +64,11 @@ void AAProjectile::Tick(float DeltaTime)
 	TargetLocation = NewLocation;
  }
 
+ void AAProjectile::SetFaction(EFactionType NewFaction)
+ {
+	OwnerFaction = NewFaction;
+ }
+
  void AAProjectile::InitializeProjectileVelocity(float NewSpeed, FVector NewVelocity, FVector SpawnPoint, FRotator StartRotator)
 {
 	SetActorLocation(SpawnPoint);

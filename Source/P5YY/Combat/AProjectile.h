@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "P5YY/Enums/GameEnums.h"
 #include "AProjectile.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FReturnedToOwner);
@@ -37,10 +38,19 @@ public:
 		float Velocity;
 		
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
+		float TargetPredictionRadius = 10.f;
+		
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
+		float TargetPredictionLength = 1000.f;
+		
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
 		int PassableTargets;
 		
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
 		float Lifetime;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
+		EFactionType OwnerFaction;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Stats")
 		bool IgnorePreset;
@@ -73,6 +83,8 @@ public:
 	void SetStartLocation(FVector NewLocation);
 	UFUNCTION(BlueprintCallable, Category = "Properties")
 	void SetTargetLocation(FVector NewLocation);
+	UFUNCTION(BlueprintCallable, Category = "Properties")
+	void SetFaction(EFactionType NewFaction);
 	
 	// Allows calling teleport event across c++ and BP
 	UPROPERTY(BlueprintCallable, BlueprintAssignable)

@@ -3,6 +3,7 @@
 
 #include "AAICharacter.h"
 #include "AbilitySystemComponent.h"
+#include "Kismet/KismetMathLibrary.h"
 
 // Sets default values
 AAAICharacter::AAAICharacter()
@@ -33,7 +34,10 @@ void AAAICharacter::BeginPlay()
 void AAAICharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
+	if (IsLockingOnTarget)
+	{
+		LockOnTargetTick(DeltaTime);
+	}
 }
 
 // Called to bind functionality to input
@@ -41,5 +45,21 @@ void AAAICharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompon
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+}
+
+void AAAICharacter::LockOnTargetTick(float DeltaTime)
+{
+	FRotator NewRotation = UKismetMathLibrary::FindLookAtRotation(
+		GetActorLocation(), TargetLocation);
+	NewRotation = FRotator(0.f, NewRotation.Yaw,0.f);
+	
+	SetActorRotation(FMath::RInterpTo(
+		GetActorRotation(), NewRotation, DeltaTime, LockRotationSpeed));
+}
+
+void AAAICharacter::SetLockTarget(bool IsLocked, FVector NewTargetLocation)
+{
+	IsLockingOnTarget = IsLocked;
+	TargetLocation = NewTargetLocation;
 }
 

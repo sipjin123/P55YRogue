@@ -58,6 +58,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	AActor* TargetActor;
 	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	FVector TargetLocation;
+
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
 	float MeleeRadius;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats")
@@ -81,4 +84,16 @@ public:
 	FOnEquipWeapon OnEquipWeaponTrigger;
 	UPROPERTY(BlueprintCallable, BlueprintAssignable)
 	FOnUnequipWeapon OnUnequipWeaponTrigger;
+
+	UFUNCTION(BlueprintCallable, Category = "Combat")
+	void SetLockTarget(bool IsLocked, FVector NewTargetLocation);
+
+	UFUNCTION(BlueprintCallable, Category = "Combat")
+	void LockOnTargetTick(float DeltaTime);
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	bool IsLockingOnTarget;
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	float LockRotationSpeed = 10.0f;;
 };
