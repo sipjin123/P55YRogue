@@ -2,6 +2,7 @@
 
 #include "Editor.h"
 #include "EditorViewportClient.h"
+#include "Kismet/KismetMathLibrary.h"
 
 
 void UBCustomUtility::Test(int a, int b)
@@ -40,4 +41,9 @@ FRotator UBCustomUtility::GetViewportCamRot()
 	return viewRot;
 #endif
 	return FRotator::ZeroRotator;
+}
+
+FVector UBCustomUtility::GetViewportForwardVector(FRotator NewRotator)
+{
+	return UKismetMathLibrary::GetForwardVector(NewRotator);
 }

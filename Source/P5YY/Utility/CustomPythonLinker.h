@@ -8,8 +8,17 @@ UCLASS()
 class P5YY_API UCustomPythonLinker : public  UBlueprintFunctionLibrary
 {
 	GENERATED_BODY()
-public:
 
 	UFUNCTION(BlueprintCallable, Category="Unreal Python")
 	static void ExecuteConsoleCommand(FString ConsoleCommand);
+public:
+	UFUNCTION(BlueprintImplementableEvent)
+	void MyTest();
+	void MyTest_Implementation();
+	
+	UFUNCTION(BlueprintCallable)
+	static float CallMyTest();
+
+	UFUNCTION(BlueprintCallable)
+	static void CalledFromPython(FString wat);
 };

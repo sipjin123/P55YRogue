@@ -17,4 +17,6 @@ public:
 	static FVector GetViewportCamLoc();
 	UFUNCTION(BlueprintCallable)
 	static FRotator GetViewportCamRot();
+	UFUNCTION(BlueprintCallable)
+	static FVector GetViewportForwardVector(FRotator NewRotator);
 };

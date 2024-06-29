@@ -14,7 +14,7 @@ selectedActors = EAS.get_selected_level_actors()
 
     #actorLabel = actor.get_actor_label()
     #actorPos = actor.get_actor_location()
-
+#unreal.Interface.call_method(actor, “YourFunctionNameAsInCpp”, FunctionArgumentsIfAny)
 newConsoleCommands = ['r.ScreenPercentage 0.1', 'r.Color.Max 6', 'stat fps', 'stat unit']
 
 
@@ -96,10 +96,17 @@ def focusViewportOnActor(active_viewport_only=True, actor=None):
 
    #unreal.SystemLibrary.execute_console_command(None, "CAMERA ALIGN ACTIVEVIEWPORTONLY")
    unreal.SystemLibrary.execute_console_command(None, command)
+
 def checkDir():
+   # Unfiltered Classes to see if custom class is compiled and recognized in python
    for x in sorted(dir(unreal)):
     print (x)
 
+def getFuncsFromPythonLinker():
+  # Get functions from custom c++, NOTE: Function names are different in python, log here to check
+  for c in sorted(dir(unreal.CustomPythonLinker)): #unreal.CustomPythonLinker / unreal.BCustomUtility
+    print (c)
+    
 def focusViewportOnRandomActor_Test(shouldRandom = False):
    world = unreal.get_editor_subsystem(unreal.UnrealEditorSubsystem).get_editor_world()
    # DEPRECATED world = unreal.EditorLevelLibrary.get_editor_world()
@@ -111,6 +118,19 @@ def focusViewportOnRandomActor_Test(shouldRandom = False):
     lenNew = len(getSelected_actors())-1
     focusViewportOnActor(False, getSelected_actors()[lenNew])
 
+def spawnActor():
+  asset_path = "/Game/Blueprints/AI/EnemyAI/Actors/MeleeEnemyBP"
+  bp_class = unreal.EditorAssetLibrary.load_blueprint_class(asset_path)
+
+  newVec = unreal.BCustomUtility.get_viewport_cam_loc()
+  newRot = unreal.BCustomUtility.get_viewport_cam_rot()
+  newForwardVec = unreal.BCustomUtility.get_viewport_forward_vector(newRot)
+
+  newVec = newVec + (newForwardVec * 1000)
+  newActor = unreal.EditorLevelLibrary.spawn_actor_from_class(bp_class, newVec)
+  newActorArray = [newActor]
+  unreal.EditorLevelLibrary.set_selected_level_actors(newActorArray)
+  print(newActor.get_name())
 
 def TestLogs():
     unreal.log("wat")
@@ -129,7 +149,12 @@ print("--------------------")
 #getAllActorsOfClass(False, unreal.Character, "")
 #print(getAllActorsOfClass(False, unreal.Actor, ""))
 
-setSelected_actors(getAllActorsOfClass(False, unreal.Character, ""))
-
+#setSelected_actors(getAllActorsOfClass(False, unreal.Character, ""))
 
 #unreal.Character / unreal.Actor
+
+#unreal.CustomPythonLinker.called_from_python("wa")
+#print (unreal.CustomPythonLinker.call_my_test())
+       
+
+spawnActor()

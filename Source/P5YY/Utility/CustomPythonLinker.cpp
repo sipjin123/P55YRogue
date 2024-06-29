@@ -14,3 +14,16 @@ void UCustomPythonLinker::ExecuteConsoleCommand(FString ConsoleCommand)
 		}
 	}
 }
+void UCustomPythonLinker::MyTest_Implementation()
+{
+	// Logic needed when blueprints don't implement the event. Can be empty.
+}
+float UCustomPythonLinker::CallMyTest()
+{
+	return 1.;
+}
+
+void UCustomPythonLinker::CalledFromPython(FString wat)
+{
+	UE_LOG(LogTemp, Error, TEXT("%s"), *wat);
+}
