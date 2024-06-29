@@ -2,9 +2,9 @@
 
 using UnrealBuildTool;
 
-public class BCWidgetToolsPlugin : ModuleRules
+public class BCLogicUtility : ModuleRules
 {
-	public BCWidgetToolsPlugin(ReadOnlyTargetRules Target) : base(Target)
+	public BCLogicUtility(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
 		

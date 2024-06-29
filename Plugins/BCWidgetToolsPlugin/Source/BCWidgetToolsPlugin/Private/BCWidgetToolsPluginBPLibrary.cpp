@@ -2,6 +2,7 @@
 
 #include "BCWidgetToolsPluginBPLibrary.h"
 #include "BCWidgetToolsPlugin.h"
+#include "EditorViewportClient.h"
 
 UBCWidgetToolsPluginBPLibrary::UBCWidgetToolsPluginBPLibrary(const FObjectInitializer& ObjectInitializer)
 : Super(ObjectInitializer)
@@ -13,4 +14,3 @@ float UBCWidgetToolsPluginBPLibrary::BCWidgetToolsPluginSampleFunction(float Par
 {
 	return -1;
 }
-
