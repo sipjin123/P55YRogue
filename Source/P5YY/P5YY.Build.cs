@@ -19,7 +19,9 @@ public class P5YY : ModuleRules
 			"AIModule", 
 			"UMG", 
 			"NavigationSystem",
-			"UnrealEd"
+			// For Editor and Tools
+			"UnrealEd",
+			"Blutility",
 		});
 		
 		PrivateDependencyModuleNames.AddRange(new string[] { "GameplayAbilities", "GameplayTags", "GameplayTasks" });
