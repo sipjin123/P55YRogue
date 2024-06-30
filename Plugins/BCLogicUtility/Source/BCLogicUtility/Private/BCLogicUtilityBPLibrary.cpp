@@ -13,5 +13,5 @@ float UBCLogicUtilityBPLibrary::TestFunctionBG(float NewFloat, int NewInt)
 
 float UBCLogicUtilityBPLibrary::TestFunctionPureBG(float NewFloat, int NewInt)
 {
-	return  5.0f;
+	return  5.0f + NewInt;
 }

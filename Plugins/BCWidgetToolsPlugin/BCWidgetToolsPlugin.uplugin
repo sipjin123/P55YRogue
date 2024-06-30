@@ -17,7 +17,7 @@
 	"Modules": [
 		{
 			"Name": "BCWidgetToolsPlugin",
-			"Type": "Editor",
+			"Type": "RuntimeAndProgram",
 			"LoadingPhase": "PreLoadingScreen"
 		}
 	]
