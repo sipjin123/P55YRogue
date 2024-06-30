@@ -12,7 +12,7 @@ void UBCustomUtility::Test(int a, int b)
 
 FVector UBCustomUtility::GetViewportCamLoc()
 {
-#if WITH_EDITOR
+#if WITH_EDITOR || !WITH_EDITOR
 	//FViewport* Viewport = GEditor->GetActiveViewport();
 	//FIntPoint mousePos;
 	//GEditor->GetActiveViewport()->GetMousePos(mousePos, true);
@@ -25,12 +25,13 @@ FVector UBCustomUtility::GetViewportCamLoc()
 	}
 	return viewPos;
 #endif
-	return  FVector::Zero();
+	//return FVector(0.0f, 0.0f, 0.0f);
+	//return  FVector::Zero();
 }
 
 FRotator UBCustomUtility::GetViewportCamRot()
 {
-#if WITH_EDITOR
+#if WITH_EDITOR || !WITH_EDITOR
 	FRotator viewRot;
 	FViewport* activeViewport = GEditor->GetActiveViewport();
 	FEditorViewportClient* editorViewClient = (FEditorViewportClient*)activeViewport->GetClient();
@@ -40,7 +41,7 @@ FRotator UBCustomUtility::GetViewportCamRot()
 	}
 	return viewRot;
 #endif
-	return FRotator::ZeroRotator;
+	//return FRotator::ZeroRotator;
 }
 
 FVector UBCustomUtility::GetViewportForwardVector(FRotator NewRotator)

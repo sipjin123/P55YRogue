@@ -10,7 +10,7 @@
 DECLARE_MULTICAST_DELEGATE(FOnInventoryUpdated);
 
 UENUM(BlueprintType)
-enum class EItemAddResult
+enum class EItemAddResult : uint8
 {
 	FailedToAddItem UMETA(DisplayName = "No item was added"),
 	AddedPartialItem UMETA(DisplayName = "Only partial item was added"),
@@ -22,9 +22,10 @@ struct FItemAddResult
 {
 	GENERATED_BODY()
 
+	/* Broken after upgrading from VS17 to VS22
 	FItemAddResult() : ActualAmountAdded(0), ItemAddResult(EItemAddResult::FailedToAddItem), ResultMessage(FText::GetEmpty())
 	{
-	};
+	};*/
 
 	UPROPERTY(BlueprintReadOnly, Category="Item add result")
 	EItemAddResult ItemAddResult;

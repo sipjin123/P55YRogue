@@ -1,6 +1,13 @@
 ﻿#include "ItemBase.h"
 
+/* Broken during upgrade from V17 to V22
 UItemBase::UItemBase() : IsCopy(false), IsPickup(false)
+{
+}
+*/
+
+
+UItemBase::UItemBase()
 {
 }
 
