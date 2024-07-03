@@ -11,6 +11,7 @@
 #include "UtilityLibrary.h"
 #include "P5YY/Combat/AProjectile.h"
 #include "P5YY/ActorComponents/ACEquipmentHandling.h"
+#include "P5YY/Data/CombatUnitData.h"
 #include "P5YY/Enums/GameEnums.h"
 #include "P5YY/Enums/PlayerActionState.h"
 #include "P5YY/UIWidgets/DialogueWidgetBase.h"
@@ -63,6 +64,9 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "UI")
 		class UACEquipmentHandling* EquipmentHandling;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+		FCombatUnitData CombatUnitData;
+	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 		class UACMobilityHandling* MobilityHandling;
 	

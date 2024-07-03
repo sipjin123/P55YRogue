@@ -18,4 +18,5 @@ enum class ECompanionState : uint8 {
 	Orbit = 8,
 	Roam = 9,
 	Die = 10,
+	Protect = 11,
 };

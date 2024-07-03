@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Character.h"
 #include "AbilitySystemInterface.h"
+#include "P5YY/Data/CombatUnitData.h"
 #include "P5YY/Enums/GameEnums.h"
 #include "P5YY\Public\BaseAttributeSet.h"
 #include "AAICharacter.generated.h"
@@ -43,13 +44,12 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category="GAS", meta = (AllowPrivateAccess="true"))
 	const class UBaseAttributeSet* BaseAttributeSet;
-
+	
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
+	FCombatUnitData CombatUnitData;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 	EFactionType FactionType;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
-	int AttackSlots = 1;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
-	int MaxAttackSlots = 1;
+
 	UPROPERTY(BlueprintCallable, BlueprintAssignable)
 	FAttackEnded AttackEnded;
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")

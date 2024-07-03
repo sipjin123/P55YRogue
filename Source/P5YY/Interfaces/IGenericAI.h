@@ -43,9 +43,11 @@ public:
 	void OnSetMaxLife(int MaxLife);
 	void OnSetMaxLife_Implementation(int MaxLife);
 
+	/*
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Setup")
 	void OnGetCurrentHealth(float& Health);
 	void OnGetCurrentHealth_Implementation(float& Health);
+	*/
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Setup")	
 	void OnGetCombatRadius(float& MeleeRadius, float &MeleeStrafeRadius, float& RangedRadius, float &RangedStrafeRadius);
