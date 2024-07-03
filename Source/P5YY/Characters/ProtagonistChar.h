@@ -93,10 +93,6 @@ public:
 	
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
 		EFactionType FactionType;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
-		int AttackSlots = 1;
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Combat")
-		int MaxAttackSlots = 1;
 
 	UPROPERTY(EditDefaultsOnly)
 	TSubclassOf<UUserWidget> DialogueClass;
