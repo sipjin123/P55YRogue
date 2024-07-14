@@ -342,11 +342,11 @@ void AProtagonistChar::LockTarget() {
 	// Snap player rotation to lock on target
 	APlayerController* ControllerRef = UGameplayStatics::GetPlayerController(GetWorld(), 0);
 	if (TargetActor != NULL) {
-		UE_LOG(CharacterLog, Warning, TEXT("Lock Target Success: {%s}"), TargetActor);
+		//UE_LOG(CharacterLog, Warning, TEXT("Lock Target Success: {%s}"), TargetActor);
 		FRotator NewRotation = UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), TargetActor->GetActorLocation());
 		ControllerRef->SetControlRotation(NewRotation);
 	} else {
-		UE_LOG(CharacterLog, Warning, TEXT("Lock Target Success"));
+		//UE_LOG(CharacterLog, Warning, TEXT("Lock Target Success"));
 	}
 }
 
