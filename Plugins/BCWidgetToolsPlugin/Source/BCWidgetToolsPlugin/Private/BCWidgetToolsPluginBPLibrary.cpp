@@ -2,7 +2,9 @@
 
 #include "BCWidgetToolsPluginBPLibrary.h"
 #include "BCWidgetToolsPlugin.h"
+#if WITH_EDITOR
 #include "EditorViewportClient.h"
+#endif
 
 UBCWidgetToolsPluginBPLibrary::UBCWidgetToolsPluginBPLibrary(const FObjectInitializer& ObjectInitializer)
 : Super(ObjectInitializer)

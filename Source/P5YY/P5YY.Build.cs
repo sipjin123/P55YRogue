@@ -1,6 +1,7 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
 
 using UnrealBuildTool;
+using System.IO;
 
 public class P5YY : ModuleRules
 {
@@ -19,11 +20,24 @@ public class P5YY : ModuleRules
 			"AIModule", 
 			"UMG", 
 			"NavigationSystem",
-			// For Editor and Tools
-			"UnrealEd",
-			"Blutility",
 		});
-		
-		PrivateDependencyModuleNames.AddRange(new string[] { "GameplayAbilities", "GameplayTags", "GameplayTasks" });
-	}
+
+        if (Target.bBuildEditor)
+        {
+            PublicDependencyModuleNames.AddRange(new string[] 
+			{ 
+				"UnrealEd",
+				"Blutility",
+			});
+        }
+        PrivateDependencyModuleNames.AddRange(new string[] 
+		{ 
+			"GameplayAbilities", 
+			"GameplayTags", 
+			"GameplayTasks" 
+		});
+        //PrivateIncludePaths.Add(Path.Combine(EngineDirectory, "Source/Editor"));
+        //PrivateIncludePaths.AddRange(new string[] { System.IO.Path.GetFullPath(Target.RelativeEnginePath) + "Source/Editor/Blutility/Private" });
+        PrivateIncludePaths.AddRange(new string[] { System.IO.Path.GetFullPath(Target.RelativeEnginePath) + "Source/Editor" });
+    }
 }

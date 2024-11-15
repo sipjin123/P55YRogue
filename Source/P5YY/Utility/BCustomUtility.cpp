@@ -1,7 +1,9 @@
 ﻿#include "BCustomUtility.h"
-
+#if WITH_EDITOR
 #include "Editor.h"
 #include "EditorViewportClient.h"
+#endif
+
 #include "Kismet/KismetMathLibrary.h"
 
 
@@ -12,11 +14,11 @@ void UBCustomUtility::Test(int a, int b)
 
 FVector UBCustomUtility::GetViewportCamLoc()
 {
-#if WITH_EDITOR || !WITH_EDITOR
+	FVector viewPos;
+#if WITH_EDITOR// || !WITH_EDITOR
 	//FViewport* Viewport = GEditor->GetActiveViewport();
 	//FIntPoint mousePos;
 	//GEditor->GetActiveViewport()->GetMousePos(mousePos, true);
-	FVector viewPos;
 	FViewport* activeViewport = GEditor->GetActiveViewport();
 	FEditorViewportClient* editorViewClient = (FEditorViewportClient*)activeViewport->GetClient();
 	if( editorViewClient )
@@ -26,13 +28,13 @@ FVector UBCustomUtility::GetViewportCamLoc()
 	return viewPos;
 #endif
 	//return FVector(0.0f, 0.0f, 0.0f);
-	//return  FVector::Zero();
+	return viewPos;
 }
 
 FRotator UBCustomUtility::GetViewportCamRot()
 {
-#if WITH_EDITOR || !WITH_EDITOR
 	FRotator viewRot;
+#if WITH_EDITOR// || !WITH_EDITOR
 	FViewport* activeViewport = GEditor->GetActiveViewport();
 	FEditorViewportClient* editorViewClient = (FEditorViewportClient*)activeViewport->GetClient();
 	if( editorViewClient )
@@ -41,7 +43,7 @@ FRotator UBCustomUtility::GetViewportCamRot()
 	}
 	return viewRot;
 #endif
-	//return FRotator::ZeroRotator;
+	return viewRot;
 }
 
 FVector UBCustomUtility::GetViewportForwardVector(FRotator NewRotator)
