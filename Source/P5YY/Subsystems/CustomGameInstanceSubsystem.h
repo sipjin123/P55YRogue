@@ -32,5 +32,5 @@ public:
 	TObjectPtr<const UInventoryTrackerDA> InventoryTrackerDA;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
-	TAssetSubclassOf<UInventoryTrackerDA> InventoryTrackerDASub;
+	TSoftClassPtr<UInventoryTrackerDA> InventoryTrackerDASub;
 };
