@@ -1,4 +1,4 @@
-﻿#include "BMathLibraryLinker.h"
+#include "BMathLibraryLinker.h"
 
 
 typedef int(*_getcustomVoidInit)(); 
@@ -272,6 +272,7 @@ float UBMathLibraryLinker::getCircleAreaFromDll(float radius)
 // Calls the method m_getCharArrayFromDLL that was imported from the DLL.
 FString UBMathLibraryLinker::getCharArrayFromDll(FString parameterText)
 {
+#if !PLATFORM_MAC
     if (m_getCharArrayFromDll != NULL)
     {
         char* parameterChar = TCHAR_TO_ANSI(*parameterText);
@@ -280,18 +281,21 @@ FString UBMathLibraryLinker::getCharArrayFromDll(FString parameterText)
 
         return (ANSI_TO_TCHAR(returnChar));
     }
+#endif
     return "Error: Method getCharArray was probabey not imported yet!";    // Return an error.
 }
 
 // Calls the method m_getVector4FromDll that was imported from the DLL.
 FVector4 UBMathLibraryLinker::getVector4FromDll( FVector4 vector4 )
 {
+#if !PLATFORM_MAC
     if( m_getVector4FromDll != NULL )
     {
         float* vector4Array = m_getVector4FromDll( vector4.X, vector4.Y, vector4.Z, vector4.W );
 
         return FVector4( vector4Array[0], vector4Array[1], vector4Array[2], vector4Array[3] );
     }
+#endif
     return FVector4( -32202.0F, -32202.0F, -32202.0F, -32202.0F );    // Return an error.
 }
 

@@ -5,7 +5,11 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
 #include "AbilitySystemInterface.h"
+#if PLATFORM_MAC
+#include "BaseAttributeSet.h"
+#elif !PLATFORM_MAC
 #include "P5YY\Public\BaseAttributeSet.h"
+#endif
 #include "AAvatarPawn.generated.h"
 
 UCLASS()

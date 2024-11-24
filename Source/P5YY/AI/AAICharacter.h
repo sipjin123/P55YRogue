@@ -7,7 +7,11 @@
 #include "AbilitySystemInterface.h"
 #include "P5YY/Data/CombatUnitData.h"
 #include "P5YY/Enums/GameEnums.h"
+#if PLATFORM_MAC
+#include "BaseAttributeSet.h"
+#elif !PLATFORM_MAC
 #include "P5YY\Public\BaseAttributeSet.h"
+#endif
 #include "AAICharacter.generated.h"
 
 DECLARE_DYNAMIC_MULTICAST_DELEGATE(FAttackEnded);
