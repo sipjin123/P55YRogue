@@ -20,6 +20,8 @@ public class P5YY : ModuleRules
 			"AIModule", 
 			"UMG", 
 			"NavigationSystem",
+			"GameplayStateTreeModule",
+			"StateTreeModule"
 		});
 
         if (Target.bBuildEditor)
