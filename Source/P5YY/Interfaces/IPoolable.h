@@ -22,4 +22,16 @@ class P5YY_API IIPoolable
 public:
 	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Pooling")
 	bool IsPoolable();
+	
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Pooling")
+	void PoolObject();
+	
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Pooling")
+	void ToggleVisibility(bool IsVisible);
+	
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Pooling")
+	void ToggleFunctionality(bool IsFunctional);
+
+	UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Pooling")
+	void PoolSpawnObject(FVector Location, FRotator Rotation);
 };
